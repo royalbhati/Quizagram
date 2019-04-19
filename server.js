@@ -4,6 +4,7 @@ const bodyparser = require("body-parser");
 const morgan = require("morgan");
 const passport = require("passport");
 const user = require("./routes/api/user_handler");
+const quiz = require("./routes/api/quiz");
 const cors = require("cors");
 const app = express();
 
@@ -24,6 +25,7 @@ mongoose
 // app.use(cors());
 
 app.use("/api/users", user);
+app.use("/api/quiz",quiz);
 // app.use("/api/posts", posts);
 // app.use("/api/profile", profile);
 // Server static assets if in production
