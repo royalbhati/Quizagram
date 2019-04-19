@@ -1,7 +1,18 @@
 [
     {
-        Q: "What franchise would you rather play a game from?",
-        O: [ "A", "B" ,"C","D"],
-        A:"A"
+        "I":0,
+        "Q": "What franchise would you rather play a game from?",
+        "O": [ "A", "B" ,"C","D"],
+        "A":"A"
     },
-  }
+    {   "I":1,
+        "Q": "Will you love me thoda?",
+        "O": [ "A", "B" ,"C","D"],
+        "A":"A"
+    },
+    {   "I":2,
+        "Q": "Will you take my loda?",
+        "O": [ "A", "B" ,"C","D"],
+        "A":"A"
+    }
+]

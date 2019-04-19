@@ -4,14 +4,29 @@ import HomeNav from './components/HomeNav'
 import Landing from './components/Landing'
 import Form from './components/Form'
 import TEMP from './components/temp'
+import quiz from './data/data.json'
 class App extends Component {
+  state={
+    quiz:quiz
+  }
+
+  renderQues =()=>{
+    return this.state.quiz.map((elem)=>{
+      return(
+        <Form quiz={elem}></Form>
+      )
+        }
+    )
+  }
+
   render() {
     return (
       <div className="App">
         <HomeNav></HomeNav>
         {/* <Landing></Landing> */}
-        {/* <Form></Form> */}
-        <TEMP></TEMP>
+        {/* // <Form></Form> */}
+        {this.renderQues()}
+        {/* <TEMP></TEMP> */}
 
       </div>
     );
