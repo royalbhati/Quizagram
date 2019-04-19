@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
-import './App.css';
-import HomeNav from './components/HomeNav'
-import Landing from './components/Landing'
-import Form from './components/Form'
-import TEMP from './components/temp'
+import React, { Component } from "react";
+import "./App.css";
+import HomeNav from "./components/HomeNav";
+import Landing from "./components/Landing";
+import Form from "./components/Form";
+import TEMP from "./components/temp";
+import CreateQuiz from "./components/CreateQuiz";
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <HomeNav></HomeNav>
+      <div className='App'>
+        <HomeNav />
+        <CreateQuiz />
         {/* <Landing></Landing> */}
         {/* <Form></Form> */}
-        <TEMP></TEMP>
-
+        {/* <TEMP></TEMP> */}
       </div>
     );
   }
