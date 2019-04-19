@@ -1,0 +1,7 @@
+[
+    {
+        Q: "What franchise would you rather play a game from?",
+        O: [ "A", "B" ,"C","D"],
+        A:"A"
+    },
+  }
