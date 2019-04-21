@@ -7,7 +7,7 @@ import Dashboard from "./components/Dashboard";
 import Signup from "./components/Signup";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from "./components/Login";
-
+import CreateQuiz from "./components/CreateQuiz";
 class App extends Component {
   render() {
     return (
@@ -20,6 +20,7 @@ class App extends Component {
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/dashboard' component={Dashboard} />
+            <Route exact path='/create-quiz' component={CreateQuiz} />
           </div>
         </div>
       </Router>
