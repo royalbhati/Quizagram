@@ -12,7 +12,6 @@ import CreateQuiz from './components/CreateQuiz'
 import Login from './components/Login'
 import DashOrg from './components/DashboardOrg'
 class App extends Component {
-
   render() {
     return (
       <Router>

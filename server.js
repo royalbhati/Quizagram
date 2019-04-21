@@ -20,9 +20,9 @@ mongoose
   .then(() => console.log("mongoDB connected"))
   .catch(err => console.log(err));
 
-// app.use(passport.initialize());
-// require("./config/passport.js")(passport);
-// app.use(cors());
+app.use(passport.initialize());
+require("./config/passport.js")(passport);
+app.use(cors());
 
 app.use("/api/users", user);
 app.use("/api/quiz",quiz);

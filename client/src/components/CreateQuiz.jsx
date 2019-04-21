@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import axios from "axios";
+import setAuthToken from "../utils/setAuthToken";
 export default class CreateQuiz extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +12,7 @@ export default class CreateQuiz extends Component {
       option2: "",
       option3: "",
       option4: "",
+      options: [],
       ans: "",
       index: 0
     };
@@ -23,21 +25,37 @@ export default class CreateQuiz extends Component {
   }
 
   //send quiz to backend
-  onSubmit(e) {
+  async onSubmit(e) {
     e.preventDefault();
-    console.log("submit");
+    //send quiz to backend and redirect page to dashboard
+    const quizzes = {};
+    quizzes.answer = this.state.answer;
+    quizzes.quizzes = this.state.quizzes;
+
+    const token = localStorage.getItem("auth-token");
+    setAuthToken(token);
+
+    await axios
+      .post("/api/quiz/create-quiz", quizzes)
+      .then(res => console.log(res.data))
+      .catch(function(response) {
+        console.log(response);
+      });
+    //TODO redirect to dashboard
   }
 
   //this method create array of quiz and answer key array
   newQuestion = async e => {
     e.preventDefault();
     const quiz = {};
-    quiz.question = this.state.question;
-    quiz.option1 = this.state.option1;
-    quiz.option2 = this.state.option2;
-    quiz.option3 = this.state.option3;
-    quiz.option4 = this.state.option4;
     quiz.index = this.state.index;
+    quiz.question = this.state.question;
+    quiz.options = [
+      this.state.option1,
+      this.state.option2,
+      this.state.option3,
+      this.state.option4
+    ];
 
     await this.setState(previous => ({
       index: this.state.index + 1,
@@ -59,7 +77,7 @@ export default class CreateQuiz extends Component {
   render() {
     return (
       <div className='container mt-3'>
-            <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit}>
           <div class='form-group'>
             <label for='Input1'>Question?</label>
             <input
