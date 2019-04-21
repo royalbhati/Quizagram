@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
+import 'antd/dist/antd.css';
 import HomeNav from './components/HomeNav'
 import Landing from './components/Landing'
 
 import Dashboard from './components/Dashboard'
 import Signup from './components/Signup'
+import TakeQuiz from './components/TakeQuiz'
 import {BrowserRouter as Router ,Route} from 'react-router-dom';
+import CreateQuiz from './components/CreateQuiz'
 import Login from './components/Login'
-
+import DashOrg from './components/DashboardOrg'
 class App extends Component {
 
   render() {
@@ -23,6 +26,10 @@ class App extends Component {
        <Route exact path='/signup' component={Signup}></Route>
        <Route exact path='/login' component={Login}></Route>
        <Route exact path='/dashboard' component={Dashboard}></Route>
+       <Route exact path='/CompDash' component={DashOrg}></Route>
+
+       <Route exact path='/dashboard/takeQuiz' component={TakeQuiz}></Route>
+       <Route exact path='/dashboard/createQuiz' component={CreateQuiz}></Route>
 
 
 
@@ -31,17 +38,7 @@ class App extends Component {
 
       </div>
       </Router>
-      // <div className='App'>
-      //   <HomeNav />
-      //   {/* <CreateQuiz /> */}
-      //   {/* <Landing></Landing> */}
-      //   {/* // <Form></Form> */}
-      //   {this.state.current>this.state.prev && this.state.len>this.state.current ? this.renderQues(this.state.current):null}
-      //  <Signup></Signup>
 
-      //   {/* <TEMP></TEMP> */}
-      //   {/* <Question content="What is your favourite food?" /> */}
-      // </div>
     );
   }
 }
