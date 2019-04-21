@@ -32,4 +32,4 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-module.exports = User = mongoose.model("Quiz_User", userSchema);
+module.exports = User = mongoose.model("quiz_user", userSchema);

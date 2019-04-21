@@ -1,5 +1,5 @@
 
-import React, { Component } from "react";
+import React, { Component } from "react"; 
 import "./App.css";
 import HomeNav from "./components/HomeNav";
 import Landing from "./components/Landing";
@@ -9,18 +9,18 @@ import CreateQuiz from "./components/CreateQuiz";
 
 
 class App extends Component {
-  state={
-    quiz:quiz
+  state = {
+    quiz: ""
   }
 
-  renderQues =()=>{
-    return this.state.quiz.map((elem)=>{
-      return(
-        <Form quiz={elem}></Form>
-      )
-        }
-    )
-  }
+  // renderQues =()=>{
+  //   return this.state.quiz.map((elem)=>{
+  //     return(
+  //       <Form quiz={elem}></Form>
+  //     )
+  //       }
+  //   )
+  // }
 
   render() {
     return (
