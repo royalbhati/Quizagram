@@ -1,4 +1,4 @@
-
+  
 import React, { Component } from "react"; 
 import "./App.css";
 import HomeNav from "./components/HomeNav";
@@ -29,7 +29,7 @@ class App extends Component {
         <CreateQuiz />
         {/* <Landing></Landing> */}
         {/* // <Form></Form> */}
-        {this.renderQues()}
+        {/* {this.renderQues()} */}
         {/* <TEMP></TEMP> */}
 
       </div>

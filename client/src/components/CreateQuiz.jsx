@@ -32,12 +32,13 @@ export default class CreateQuiz extends Component {
   newQuestion = async e => {
     e.preventDefault();
     const quiz = {};
+    quiz.index = this.state.index;
     quiz.question = this.state.question;
     quiz.option1 = this.state.option1;
     quiz.option2 = this.state.option2;
     quiz.option3 = this.state.option3;
     quiz.option4 = this.state.option4;
-    quiz.index = this.state.index;
+    
 
     await this.setState(previous => ({
       index: this.state.index + 1,
