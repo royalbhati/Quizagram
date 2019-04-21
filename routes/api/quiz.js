@@ -13,7 +13,7 @@ const Quiz = require("../../models/Quizzes");
 // @access  Private
 router.post(
   "/create-quiz",
-  passport.authenticate('jwt', { session: false }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // const { errors, isValid } = validateExperienceInput(req.body);
 
@@ -22,12 +22,33 @@ router.post(
     //   // Return any errors with 400 status
     //   return res.status(400).json(errors);
     // }
-    
+
     const newQuiz = {};
     newQuiz.user = req.user.id;
-    newQuiz.quizzes = req.body.quizzess;
+    newQuiz.quizzes = req.body.quizzes;
     newQuiz.answer = req.body.answer;
     new Quiz(newQuiz).save().then(quiz => res.json(quiz));
+  }
+);
+
+// @route   GET api/quiz/quizzes
+// @desc    Add new quiz
+// @access  Private
+router.get(
+  "/all",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    errors = {}
+    Quiz.find()
+      .then(quiz => {
+        if (!quiz) {
+          errors.quiz = "There are no Quiz";
+          return res.status(404).json(errors);
+        }
+
+        res.json(quiz);
+      })
+      .catch(err => res.status(404).json({ Quiz: "There are no Quiz" }));
   }
 );
 

@@ -7,8 +7,13 @@ const quizSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "quiz_user"
   },
+
   quizzes: [
     {
+      index: {
+        type: Number,
+        required: true
+      },
       question: {
         type: String,
         required: true
