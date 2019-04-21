@@ -24,7 +24,7 @@ class Signup extends Component {
     return (
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="#">
+		<form className="Authform">
 			<h1>Business Account Signup</h1>
 			<div class="social-container">
 				<a href="#" class="social links"><i class="fab fa-facebook-f"></i></a>
@@ -41,7 +41,7 @@ class Signup extends Component {
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="#">
+		<form className="Authform">
 			<h1>Individual Account Signup</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>

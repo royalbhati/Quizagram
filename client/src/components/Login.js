@@ -23,7 +23,7 @@ class Login extends Component {
     return (
 <div class="container" id="container">
 	<div class="form-container sign-up-container">
-		<form action="#">
+		<form className="Authform">
 			<h1>Business Account Login</h1>
 			<div class="social-container">
 				<a href="#" class="social links"><i class="fab fa-facebook-f"></i></a>
@@ -40,7 +40,7 @@ class Login extends Component {
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form action="#">
+		<form className="Authform">
 			<h1>Individual Login</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
