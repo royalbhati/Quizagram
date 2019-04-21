@@ -8,8 +8,9 @@ import quiz from './data/data.json'
 import Question from './components/Question';
 import QuestionCount from './components/QuestionCount';
 import AnswerOption from './components/AnswerOption'
-
-
+import Signup from './components/Signup'
+import {BrowserRouter as Router ,Route} from 'react-router-dom';
+import Login from './components/Login'
 
 class App extends Component {
   state={
@@ -37,17 +38,36 @@ class App extends Component {
 
   render() {
     return (
-      <div className='App'>
-        <HomeNav />
-        <CreateQuiz />
-        {/* <Landing></Landing> */}
-        {/* // <Form></Form> */}
-        {this.state.current>this.state.prev && this.state.len>this.state.current ? this.renderQues(this.state.current):null}
+      <Router>
+      <div>
 
 
-        {/* <TEMP></TEMP> */}
-        {/* <Question content="What is your favourite food?" /> */}
+      <div className="App">
+      <Route exact path="/" component={HomeNav}></Route>
+       <Route exact path='/' component={Landing}></Route>
+       <div className="container"></div>
+       <Route exact path='/signup' component={Signup}></Route>
+       <Route exact path='/login' component={Login}></Route>
+       {/* {this.isLoggedIn ?  <Route exact path='/dashboard' component={Dashboard}></Route> : null} */}
+
+
+
       </div>
+
+
+      </div>
+      </Router>
+      // <div className='App'>
+      //   <HomeNav />
+      //   {/* <CreateQuiz /> */}
+      //   {/* <Landing></Landing> */}
+      //   {/* // <Form></Form> */}
+      //   {this.state.current>this.state.prev && this.state.len>this.state.current ? this.renderQues(this.state.current):null}
+      //  <Signup></Signup>
+
+      //   {/* <TEMP></TEMP> */}
+      //   {/* <Question content="What is your favourite food?" /> */}
+      // </div>
     );
   }
 }

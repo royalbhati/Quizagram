@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import quiz from '../data/data.json'
+// import quiz from '../data/data.json'
 export default class Form extends Component {
     state ={
         answers:[
@@ -22,13 +22,15 @@ export default class Form extends Component {
             options.forEach(elem=>{
                 if(elem!==event.target){
                     elem.classList.remove('btn-info');
+                    elem.classList.add('btn-outline-info');
+
                 }
 
             })
 
         }else{
-            event.target.classList.add('btn-outline-info');
-            event.target.classList.remove('btn-info');
+            // event.target.classList.add('btn-outline-info');
+            // event.target.classList.remove('btn-info');
         }
 
     const answer={
@@ -82,3 +84,5 @@ export default class Form extends Component {
           </form>
       </div>
     )
+  }
+}
