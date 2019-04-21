@@ -7,12 +7,12 @@
     },
     {   "I":1,
         "Q": "Will you love me thoda?",
-        "O": [ "A", "B" ,"C","D"],
+        "O": [ "E", "F" ,"G","H"],
         "A":"A"
     },
     {   "I":2,
         "Q": "Will you take my loda?",
-        "O": [ "A", "B" ,"C","D"],
+        "O": [ "L", "K" ,"J","I"],
         "A":"A"
     }
 ]

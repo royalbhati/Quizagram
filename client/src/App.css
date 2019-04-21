@@ -1649,3 +1649,10 @@ button.btn-cont-temps-amk {
   margin-top:2rem;
   margin-bottom: 2rem;
 }
+
+.next{
+ text-align: center
+}
+.btn-primary{
+  background: rgb(51, 51, 51)
+ }

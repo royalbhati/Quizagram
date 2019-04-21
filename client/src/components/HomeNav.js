@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom"
 
 export default function Nav() {
   return (
@@ -46,7 +47,7 @@ export default function Nav() {
 								<input class="search" type="search" placeholder="Search Here..." required=""/>
 								<button class="form-control btn" type="submit"><span class="fa fa-search"></span></button>
                             </form> */}
-                            <span class="btn button-style">Login</span>
+                            <Link to="/login" class="btn button-style">Login</Link>
 						</div>
 
 						{/* <a class="dwn-temps-amkls btn" href="http://w3layouts.com/" target="_blank">

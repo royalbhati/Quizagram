@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import {Link} from "react-router-dom"
 export default class Landing extends Component {
   render() {
     return (
@@ -12,7 +12,7 @@ export default class Landing extends Component {
 						<h3 class="temps-amkls_pvt-title">Quiza<span>Gram</span></h3>
 						<p class="text-sty-banner">Sed ut perspiciatis unde omnis iste natus doloremque
 							laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
-						<a href="about.html" class="btn button-style mt-md-5 mt-4">Read More</a>
+						<Link to="/signup"  class="btn button-style mt-md-5 mt-4">Get Started</Link>
 					</div>
 					<div class="banner-img">
 						<img src="banner.png" alt="" class="img-fluid"/>
