@@ -7,14 +7,9 @@
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "formik": "^1.5.2",
-<<<<<<< HEAD
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-=======
     "jwt-decode": "^2.2.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
->>>>>>> 3c74a197b335261d6831b0e31e03a2d92e1173fb
     "react-redux": "^7.0.2",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.3",
