@@ -1,8 +1,14 @@
-import React, { Component } from 'react'
-import DashNav from './DashNav'
-import PostCard from './PostCard'
-import LiveUpdate from './LiveUpdates'
+import React, { Component } from "react";
+import DashNav from "./DashNav";
+import PostCard from "./PostCard";
+import LiveUpdate from "./LiveUpdates";
 export default class Dashboard extends Component {
+  componentDidMount() {
+    //todo check localstorage if token is not available than redirect to login page
+    if (!localStorage.getItem("auth-token")) {
+      this.props.history.push("/login");
+    }
+  }
 
   render() {
     return (
@@ -18,6 +24,6 @@ export default class Dashboard extends Component {
 
         </div>
       </div>
-    )
+    );
   }
 }

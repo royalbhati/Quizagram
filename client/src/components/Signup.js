@@ -57,7 +57,7 @@ class Signup extends Component {
         console.log(response);
       });
 
-    //todo redirect to login page
+    this.props.history.push("/login");
   };
   onCompanySignup = e => {
     e.preventDefault();
@@ -77,7 +77,7 @@ class Signup extends Component {
         console.log(response);
       });
 
-    //todo redirect to login page
+    this.props.history.push("/login");
   };
 
   render() {
