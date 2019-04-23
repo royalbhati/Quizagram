@@ -29,9 +29,6 @@ class App extends Component {
 
        <Route exact path='/dashboard/takeQuiz' component={TakeQuiz}></Route>
        <Route exact path='/dashboard/createQuiz' component={CreateQuiz}></Route>
-
-
-
       </div>
 
 

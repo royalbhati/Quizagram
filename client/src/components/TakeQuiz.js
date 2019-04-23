@@ -10,11 +10,17 @@ export default class TakeQuiz extends Component {
     prev: -1,
     len: quiz.length
   };
+  // componentDidMount() {
+  //set toekn and fetch quizzes
+  // const token = localStorage.getItem("auth-token");
+  // setAuthToken(token);
+
+  // }
   componentDidMount() {
-    //set toekn and fetch quizzes
-    const token = localStorage.getItem("auth-token");
-    setAuthToken(token);
-    
+    //todo check localstorage if token is not available than redirect to login page
+    if (!localStorage.getItem("auth-token")) {
+      this.props.history.push("/login");
+    }
   }
 
   onClick = () => {
