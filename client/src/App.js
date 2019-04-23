@@ -3,7 +3,6 @@ import './App.css';
 import 'antd/dist/antd.css';
 import HomeNav from './components/HomeNav'
 import Landing from './components/Landing'
-
 import Dashboard from './components/Dashboard'
 import Signup from './components/Signup'
 import TakeQuiz from './components/TakeQuiz'
@@ -26,12 +25,8 @@ class App extends Component {
        <Route exact path='/login' component={Login}></Route>
        <Route exact path='/dashboard' component={Dashboard}></Route>
        <Route exact path='/CompDash' component={DashOrg}></Route>
-
        <Route exact path='/dashboard/takeQuiz' component={TakeQuiz}></Route>
        <Route exact path='/dashboard/createQuiz' component={CreateQuiz}></Route>
-
-
-
       </div>
 
 

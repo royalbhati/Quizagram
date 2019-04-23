@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./signup.css";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { decode } from "punycode";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -50,19 +52,19 @@ class Login extends Component {
     // const {errors}= this.state
 
     return (
-      <div class='container' id='container'>
-        <div class='form-container sign-up-container'>
+      <div className='container' id='container'>
+        <div className='form-container sign-up-container'>
           <form className='Authform'>
             <h1>Business Account Login</h1>
-            <div class='social-container'>
-              <a href='#' class='social links'>
-                <i class='fab fa-facebook-f' />
+            <div className='social-container'>
+              <a href='#' className='social links'>
+                <i className='fab fa-facebook-f' />
               </a>
-              <a href='#' class='social links'>
-                <i class='fab fa-google-plus-g' />
+              <a href='#' className='social links'>
+                <i className='fab fa-google-plus-g' />
               </a>
-              <a href='#' class='social links'>
-                <i class='fab fa-linkedin-in' />
+              <a href='#' className='social links'>
+                <i className='fab fa-linkedin-in' />
               </a>
             </div>
             {/* <span>To be filled by a company representitive</span> */}
@@ -88,18 +90,18 @@ class Login extends Component {
             </button>
           </form>
         </div>
-        <div class='form-container sign-in-container'>
+        <div className='form-container sign-in-container'>
           <form className='Authform'>
             <h1>Individual Login</h1>
-            <div class='social-container'>
-              <a href='#' class='social'>
-                <i class='fab fa-facebook-f' />
+            <div className='social-container'>
+              <a href='#' className='social'>
+                <i className='fab fa-facebook-f' />
               </a>
-              <a href='#' class='social'>
-                <i class='fab fa-google-plus-g' />
+              <a href='#' className='social'>
+                <i className='fab fa-google-plus-g' />
               </a>
-              <a href='#' class='social'>
-                <i class='fab fa-linkedin-in' />
+              <a href='#' className='social'>
+                <i className='fab fa-linkedin-in' />
               </a>
             </div>
             {/* <span>or use your account</span> */}
@@ -125,25 +127,25 @@ class Login extends Component {
             </button>
           </form>
         </div>
-        <div class='overlay-container'>
-          <div class='overlay'>
-            <div class='overlay-panel overlay-left'>
+        <div className='overlay-container'>
+          <div className='overlay'>
+            <div className='overlay-panel overlay-left'>
               <h1>Welcome!</h1>
               <p>If you are an individual please click here</p>
 
               <button
                 onClick={this.onClick2}
-                class='ghost buttonSign'
+                className='ghost buttonSign'
                 id='signIn'>
                 Sign In
               </button>
             </div>
-            <div class='overlay-panel overlay-right'>
+            <div className='overlay-panel overlay-right'>
               <h1>Hello, Friend!</h1>
               <p>If you are a company representitive please click here</p>
               <button
                 onClick={this.onClick}
-                class='ghost buttonSign'
+                className='ghost buttonSign'
                 id='signUp'>
                 Sign In
               </button>

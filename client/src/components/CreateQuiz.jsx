@@ -23,7 +23,12 @@ export default class CreateQuiz extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
-
+  componentDidMount() {
+    //todo check localstorage if token is not available than redirect to login page
+    if (!localStorage.getItem("auth-token")) {
+      this.props.history.push("/login");
+    }
+  }
   //send quiz to backend
   async onSubmit(e) {
     e.preventDefault();

@@ -5,16 +5,24 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 export default class TakeQuiz extends Component {
   state = {
-    quiz: quiz,
+    quiz: this.props.location.state.quiz,
     current: 0,
     prev: -1,
     len: quiz.length
   };
+  // componentDidMount() {
+  //set toekn and fetch quizzes
+  // const token = localStorage.getItem("auth-token");
+  // setAuthToken(token);
+
+  // }
   componentDidMount() {
-    //set toekn and fetch quizzes
-    const token = localStorage.getItem("auth-token");
-    setAuthToken(token);
-    
+    //todo check localstorage if token is not available than redirect to login page
+    // if (!localStorage.getItem("auth-token")) {
+    //   this.props.history.push("/login");
+    // }
+    console.log("data aa gaya",this.props.location.state.detail);
+
   }
 
   onClick = () => {
@@ -38,6 +46,8 @@ export default class TakeQuiz extends Component {
     );
   };
   render() {
+    
+
     return (
       <div>
         {this.state.current > this.state.prev &&

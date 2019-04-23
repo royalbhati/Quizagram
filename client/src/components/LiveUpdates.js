@@ -18,17 +18,17 @@ export default function LiveUpdates() {
       description="www.instagram.com"
     />
   </Card> */}
-  <button class="alert alert-dismissible alert-warning">
-  <h4 class="alert-heading">TCS</h4>
+  <button className="alert alert-dismissible alert-warning">
+  <h4 className="alert-heading">TCS</h4>
 </button>
-<button class="alert alert-dismissible alert-success">
-  <h4 class="alert-heading">Infosys</h4>
+<button className="alert alert-dismissible alert-success">
+  <h4 className="alert-heading">Infosys</h4>
 </button>
-<button class="alert alert-dismissible alert-info">
-  <h4 class="alert-heading">SSC</h4>
+<button className="alert alert-dismissible alert-info">
+  <h4 className="alert-heading">SSC</h4>
 </button>
-<button class="alert alert-dismissible alert-danger">
-  <h4 class="alert-heading">SSC</h4>
+<button className="alert alert-dismissible alert-danger">
+  <h4 className="alert-heading">SSC</h4>
 </button>
 
     </div>
