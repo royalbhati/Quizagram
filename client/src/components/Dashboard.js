@@ -7,7 +7,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div>
-          <DashNav></DashNav>
+          <DashNav history={this.props.history}></DashNav>
         <div className="dashboard">
         <div className="sidebar">
         <LiveUpdate ></LiveUpdate>
