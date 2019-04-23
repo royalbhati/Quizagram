@@ -11,7 +11,6 @@ export default class DashboardOrg extends Component {
   }
   render() {
     return (
-<<<<<<< HEAD
       <div>
       <OrgNav></OrgNav>
       <div className="container mt-5">
@@ -20,12 +19,6 @@ export default class DashboardOrg extends Component {
       </Link>
          {/* <Link class="btn button-style">Create Quiz</Link> */}
       </div>
-=======
-      <div className="container mt-5 ">
-
-         <Link to="/dashboard/createQuiz" className="btn button-style">Create Quiz</Link>
-
->>>>>>> 93f3a256963a4419aa3bbbb8e7bed69d9cc9a619
       </div>
     )
   }

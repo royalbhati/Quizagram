@@ -17,7 +17,8 @@ export default class DashNav extends Component {
 		super();
 		this.state = {
 			showModal: false,
-			id:""
+			id:"",
+			roy:"royal"
 		};
 
 		this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -41,13 +42,16 @@ export default class DashNav extends Component {
 	}
 	handleRedirect = (event)=>{
 		// event.preventDefault();
-		console.log(this.state);
+		// console.log(this.state);
 
 		// console.log(event.target.value)
-		// this.props.history.push('/dashboard/takeQuiz')
+
 		axios.get(`/takequiz/${this.state.id}`)
 		.then(res=>{
-					console.log("quiz",res.data)
+			this.props.history.push({
+				pathname: '/dashboard/takeQuiz',
+				state: { quiz:res.data }
+			})
 		})
 	}
 	render() {
