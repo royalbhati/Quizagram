@@ -40,17 +40,8 @@ class Login extends Component {
         const { token } = response.data;
         // console.log(response.data);
         localStorage.setItem("auth-token", token);
-
-        // Decode token to get user data
-        const decoded = jwt_decode(token);
-
-        console.log(decoded.type);
-
-        if (decoded.type === "organization") {
-          this.props.history.push("/compdash");
-        } else {
-          this.props.history.push("/dashboard");
-        }
+        this.props.history.push('/dashboard')  
+		//TODO redirect to dashboard
       })
       .catch(function(response) {
         console.log(response);

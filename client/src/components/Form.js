@@ -8,11 +8,11 @@ export default class Form extends Component {
         a: ""
       }
     ],
-    current: 0
+    current: 1
   };
   onClick = event => {
     const options = Array.from(document.getElementsByClassName("opts"));
-    console.log("options", options);
+    console.log("options", event.target.id);
 
     if (event.target.classList.contains("btn-outline-info")) {
       event.target.classList.remove("btn-outline-info");
@@ -31,7 +31,7 @@ export default class Form extends Component {
 
     const answer = {
       question: this.props.quiz.index,
-      a: event.target.value
+      a:  event.target.id
     };
     this.setState(prevState => {
       const prevOpt = prevState.answers[prevState.answers.length - 1].question;
@@ -57,6 +57,7 @@ export default class Form extends Component {
         <button
           onClick={this.onClick}
           value={elem}
+          id={i+1}
           class=' opts btn btn-outline-info'
           style={{ cursor: "pointer" }}>
           {elem}
@@ -71,7 +72,7 @@ export default class Form extends Component {
       <div className='container mt-5'>
         <form onSubmit={this.onSubmit}>
           <div class='form-group'>
-            <label className='ques'>Question 1 out of 20</label>
+            <label className='ques'>Question {this.props.current+1} out of {this.props.len}</label>
             <h5 class='label' for='exampleInputEmail1'>
               {this.props.quiz.question}
             </h5>

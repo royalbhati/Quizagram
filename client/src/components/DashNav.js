@@ -112,12 +112,11 @@ export default class DashNav extends Component {
    			 </div>
 
 					</form>
-					<button className="btn button-style mr-5"   onClick={this.handleRedirect}>Enter Quiz</button>
-					<button className="btn btn-primary "   onClick={this.handleCloseModal}>Close</button>
+					<button class="btn button-style mr-5"   onClick={this.handleRedirect}>Enter Quiz</button>
+					<button class="btn btn-primary "   onClick={this.handleCloseModal}>Close</button>
 
 
- 
-                   
+
                     </ReactModal>
                     {/* <Link to="/dashboard/takeQuiz" className="btn button-style mr-5"> <i className="fas fa-pen"></i> Take Quiz</Link> */}
 
