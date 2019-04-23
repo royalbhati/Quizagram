@@ -45,7 +45,7 @@ export default class DashNav extends Component {
 
 		// console.log(event.target.value)
 		// this.props.history.push('/dashboard/takeQuiz')
-		axios.get(`/takequiz/:${this.state.id}`)
+		axios.get(`/takequiz/${this.state.id}`)
 		.then(res=>{
 					console.log("quiz",res.data)
 		})
