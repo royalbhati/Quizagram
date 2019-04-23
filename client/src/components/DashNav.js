@@ -46,9 +46,11 @@ export default class DashNav extends Component {
 		// console.log(this.state);
 
 		// console.log(event.target.value)
-
-		axios.get(`/takequiz/${this.state.id}`)
+    setAuthToken(localStorage.getItem("auth-token"))
+		axios.get(`/api/quiz/${this.state.id}`)
 		.then(res=>{
+      console.log(res.data);
+      
 			this.props.history.push({
 				pathname: '/dashboard/takeQuiz',
 				state: { quiz:res.data }
@@ -58,55 +60,55 @@ export default class DashNav extends Component {
 	render() {
 		return (
 			<div>
-			<div class="main-top" id="home">
+			<div className="main-top" id="home">
 			<header>
-				<div class="container-fluid">
-					<div class="header d-lg-flex justify-content-between align-items-center py-3 px-sm-3">
+				<div className="container-fluid">
+					<div className="header d-lg-flex justify-content-between align-items-center py-3 px-sm-3">
 
 						<div id="logo">
-							<h1><a href="index.html"><span class="fa fa-linode mr-2"></span>QuizaGram</a></h1>
+							<h1><a href="index.html"><span className="fa fa-linode mr-2"></span>QuizaGram</a></h1>
 						</div>
 
-						<div class="nav_temps-amkls">
+						<div className="nav_temps-amkls">
 							<nav>
-								<label for="drop" class="toggle">Menu</label>
+								<label for="drop" className="toggle">Menu</label>
 								<input type="checkbox" id="drop" />
-								<ul class="menu">
-									<li><a href="index.html" class="active">Home</a></li>
+								<ul className="menu">
+									<li><a href="index.html" className="active">Home</a></li>
 									<li><a href="about.html">About Us</a></li>
 									<li>
 
-										<label for="drop-2" class="toggle toogle-2">Examination <span class="fa fa-angle-down" aria-hidden="true"></span>
+										<label for="drop-2" className="toggle toogle-2">Examination <span className="fa fa-angle-down" aria-hidden="true"></span>
 										</label>
-										<a href="#">Examination <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+										<a href="#">Examination <span className="fa fa-angle-down" aria-hidden="true"></span></a>
 										<input type="checkbox" id="drop-2" />
 										<ul>
-											<li><a href="#services" class="drop-text">JEE</a></li>
-											<li><a href="faq.html" class="drop-text">NEET</a></li>
-											<li><a href="404.html" class="drop-text">TCS</a></li>
-											<li><a href="#stats" class="drop-text">CAT</a></li>
-											<li><a href="about.html" class="drop-text">GRE</a></li>
-											{/* <li><a href="about.html" class="drop-text">Our Team</a></li> */}
-											{/* <li><a href="#partners" class="drop-text">Partners</a></li> */}
+											<li><a href="#services" className="drop-text">JEE</a></li>
+											<li><a href="faq.html" className="drop-text">NEET</a></li>
+											<li><a href="404.html" className="drop-text">TCS</a></li>
+											<li><a href="#stats" className="drop-text">CAT</a></li>
+											<li><a href="about.html" className="drop-text">GRE</a></li>
+											{/* <li><a href="about.html" className="drop-text">Our Team</a></li> */}
+											{/* <li><a href="#partners" className="drop-text">Partners</a></li> */}
 										</ul>
 									</li>
 									<li><a href="contact.html">Contact Us</a></li>
 								</ul>
 							</nav>
 						</div>
-						<div class="d-flex mt-lg-1 mt-sm-2 mt-3 justify-content-center">
+						<div className="d-flex mt-lg-1 mt-sm-2 mt-3 justify-content-center">
 
-							<div class="search-temps-amklayouts mr-3">
+							<div className="search-temps-amklayouts mr-3">
 
-							<button class="btn button-style mr-5" onClick={this.handleOpenModal}>Trigger Modal</button>
+							<button className="btn button-style mr-5" onClick={this.handleOpenModal}>Trigger Modal</button>
         <ReactModal
 					 isOpen={this.state.showModal}
 					 style={customStyles}
         >
 				<form onSubmit={this.handleRedirect}>
-				<div class="form-group">
+				<div className="form-group">
       <label for="exampleInputEmail1">Enter Quiz ID</label>
-      <input  onChange={this.onChange} value={this.state.id} type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ac2b3cd..."/>
+      <input  onChange={this.onChange} value={this.state.id} type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ac2b3cd..."/>
    			 </div>
 
 					</form>
@@ -116,14 +118,14 @@ export default class DashNav extends Component {
 
 
                     </ReactModal>
-                    {/* <Link to="/dashboard/takeQuiz" class="btn button-style mr-5"> <i class="fas fa-pen"></i> Take Quiz</Link> */}
+                    {/* <Link to="/dashboard/takeQuiz" className="btn button-style mr-5"> <i className="fas fa-pen"></i> Take Quiz</Link> */}
 
-                    <Link to='/login' class='btn button-style'>
+                    <Link to='/login' className='btn button-style'>
                       Logout
                     </Link>
                   </div>
 
-                  {/* <a class="dwn-temps-amkls btn" href="http://w3layouts.com/" target="_blank">
+                  {/* <a className="dwn-temps-amkls btn" href="http://w3layouts.com/" target="_blank">
 
 							</a> */}
                 </div>
