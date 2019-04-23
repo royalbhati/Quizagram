@@ -7,6 +7,7 @@ const keys = require("../../config/keys");
 
 //Load Quiz Model
 const Quiz = require("../../models/Quizzes");
+const Stats = require("../../models/User_Stats");
 
 // @route   POST api/quiz/create-quiz
 // @desc    Add new quiz
@@ -38,7 +39,7 @@ router.get(
   "/all",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    errors = {}
+    errors = {};
     Quiz.find()
       .then(quiz => {
         if (!quiz) {
@@ -52,7 +53,6 @@ router.get(
   }
 );
 
-
 // @route   GET api/quiz/:id
 // @desc    Return quiz by id
 // @access  Private
@@ -60,14 +60,40 @@ router.get(
   "/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    errors = {}
+    errors = {};
     // console.log(req.params.id);
-    Quiz.findById({ "_id": req.params.id})
+    Quiz.findById({ _id: req.params.id })
       .then(quiz => {
         if (!quiz) {
           errors.quiz = "There is no Quiz";
           return res.status(404).json(errors);
         }
+        res.json(quiz);
+      })
+      .catch(err => res.status(404).json({ Quiz: "There is no Quiz" }));
+  }
+);
+
+// @route   POST api/quiz/eval
+// @desc    calculate user stats
+// @access  Private
+router.post(
+  "/eval",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    // Get user detail from token and get quiz data using id
+    errors = {};
+    // console.log(req.params.id);
+    Quiz.findById({ _id: req.id })
+      .then(quiz => {
+        if (!quiz) {
+          errors.quiz = "There is no Quiz";
+          return res.status(404).json(errors);
+        }
+        //compare answers store the stats and update rank
+        [
+
+        ]
         res.json(quiz);
       })
       .catch(err => res.status(404).json({ Quiz: "There is no Quiz" }));
