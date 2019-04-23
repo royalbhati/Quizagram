@@ -8,7 +8,7 @@ export default class TakeQuiz extends Component {
     quiz: this.props.location.state.quiz,
     current: 0,
     prev: -1,
-    len: quiz.length
+    len: this.props.location.state.quiz.answer.length
   };
   // componentDidMount() {
   //set toekn and fetch quizzes
@@ -21,8 +21,7 @@ export default class TakeQuiz extends Component {
     // if (!localStorage.getItem("auth-token")) {
     //   this.props.history.push("/login");
     // }
-    console.log("data aa gaya",this.props.location.state.detail);
-
+    console.log("data aa gaya", this.props.location.state.detail);
   }
 
   onClick = () => {
@@ -41,13 +40,11 @@ export default class TakeQuiz extends Component {
       <Form
         onClick={this.onClick}
         classBtn='btn-outline-info'
-        quiz={this.state.quiz[i]}
+        quiz={this.state.quiz.quizzes[i]}
       />
     );
   };
   render() {
-    
-
     return (
       <div>
         {this.state.current > this.state.prev &&

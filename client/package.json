@@ -8,13 +8,8 @@
     "classnames": "^2.2.6",
     "formik": "^1.5.2",
     "jwt-decode": "^2.2.0",
-<<<<<<< HEAD
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-=======
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
->>>>>>> 8a584c7ef525bb1ca708fdd119a71fbe4b469b21
     "react-modal": "^3.8.1",
     "react-redux": "^7.0.2",
     "react-router-dom": "^5.0.0",
