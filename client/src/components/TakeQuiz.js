@@ -46,6 +46,8 @@ export default class TakeQuiz extends Component {
     );
   };
   render() {
+    
+
     return (
       <div>
         {this.state.current > this.state.prev &&

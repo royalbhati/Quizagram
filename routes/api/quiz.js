@@ -31,8 +31,8 @@ router.post(
   }
 );
 
-// @route   GET api/quiz/quizzes
-// @desc    Add new quiz
+// @route   GET api/quiz/all
+// @desc    Return all quiz
 // @access  Private
 router.get(
   "/all",
@@ -49,6 +49,28 @@ router.get(
         res.json(quiz);
       })
       .catch(err => res.status(404).json({ Quiz: "There are no Quiz" }));
+  }
+);
+
+
+// @route   GET api/quiz/:id
+// @desc    Return quiz by id
+// @access  Private
+router.get(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    errors = {}
+    // console.log(req.params.id);
+    Quiz.findById({ "_id": req.params.id})
+      .then(quiz => {
+        if (!quiz) {
+          errors.quiz = "There is no Quiz";
+          return res.status(404).json(errors);
+        }
+        res.json(quiz);
+      })
+      .catch(err => res.status(404).json({ Quiz: "There is no Quiz" }));
   }
 );
 
