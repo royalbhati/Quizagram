@@ -13,14 +13,15 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div>
-        <DashNav />
-        <div className='dashboard'>
-          <div className='sidebar'>
-            <LiveUpdate />
-          </div>
-          <div className='content'>
-            <PostCard className='content' />
-          </div>
+          <DashNav history={this.props.history}></DashNav>
+        <div className="dashboard">
+        <div className="sidebar">
+        <LiveUpdate ></LiveUpdate>
+        </div>
+        <div className="content">
+        <PostCard className="content"></PostCard>
+        </div>
+
         </div>
       </div>
     );
