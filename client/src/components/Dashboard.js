@@ -16,7 +16,7 @@ export default class Dashboard extends Component {
           <DashNav history={this.props.history}></DashNav>
         <div className="dashboard">
         <div className="sidebar">
-        <LiveUpdate ></LiveUpdate>
+        <LiveUpdate history={this.props.history}></LiveUpdate>
         </div>
         <div className="content">
         <PostCard className="content"></PostCard>

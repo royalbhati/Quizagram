@@ -10,6 +10,7 @@ import {BrowserRouter as Router ,Route} from 'react-router-dom';
 import CreateQuiz from './components/CreateQuiz'
 import Login from './components/Login'
 import DashOrg from './components/DashboardOrg'
+import PublicQuiz from './components/PublicQuiz';
 class App extends Component {
   render() {
     return (
@@ -27,6 +28,7 @@ class App extends Component {
        <Route exact path='/CompDash' component={DashOrg}></Route>
        <Route exact path='/dashboard/takeQuiz' component={TakeQuiz}></Route>
        <Route exact path='/dashboard/createQuiz' component={CreateQuiz}></Route>
+       <Route exact path="/dashboard/public/" component={PublicQuiz}></Route>
       </div>
 
 

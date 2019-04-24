@@ -8,7 +8,8 @@ export default class Form extends Component {
         a: ""
       }
     ],
-    current: 1
+    current: 0,
+ 
   };
   onClick = event => {
     const options = Array.from(document.getElementsByClassName("opts"));
@@ -29,6 +30,7 @@ export default class Form extends Component {
       // event.target.classList.remove('btn-info');
     }
 
+
     const answer = {
       question: this.props.quiz.index,
       a:  event.target.id
@@ -39,11 +41,32 @@ export default class Form extends Component {
         prevState.answers[prevState.answers.length - 1].question ===
         answer.question
       ) {
-        return { answers: [{ question: prevOpt, a: answer.a }] };
+        return { answers: [{ question: prevOpt, a: answer.a }],current:prevState.current+1 };
       } else {
-        return { answers: [...prevState.answers, answer] };
+        return { answers: [...prevState.answers, answer],current:prevState.current+1 };
       }
     });
+
+  // For public quiz
+  if(this.props.actualAnswer){
+    if(this.props.actualAnswer[this.state.current]==event.target.id){
+      if(event.target.classList.contains("btn-info")|| event.target.classList.contains("btn-outline-info")){
+        event.target.classList.remove("btn-outline-info");
+        event.target.classList.remove("btn-info");
+        event.target.classList.add("btn-success")
+
+
+      }
+     
+    }else{
+      event.target.classList.remove("btn-outline-info");
+        event.target.classList.remove("btn-info");
+        event.target.classList.add("btn-danger")
+    }
+      
+
+  }
+  
   };
 
   onSubmit = event => {

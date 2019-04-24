@@ -13,16 +13,16 @@ export default class TakeQuiz extends Component {
     len: this.props.location.state.quiz.answer.length
   };
   // componentDidMount() {
-  //set toekn and fetch quizzes
+  // set toekn and fetch quizzes
   // const token = localStorage.getItem("auth-token");
   // setAuthToken(token);
 
   // }
   componentDidMount() {
     //todo check localstorage if token is not available than redirect to login page
-    // if (!localStorage.getItem("auth-token")) {
-    //   this.props.history.push("/login");
-    // }
+    if (!localStorage.getItem("auth-token")) {
+      this.props.history.push("/login");
+    }
     console.log("data aa gaya", this.props.location.state.quiz._id);
   }
 
