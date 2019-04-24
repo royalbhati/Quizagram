@@ -33,7 +33,6 @@ class App extends Component {
 
     return (
       <Router>
-<<<<<<< HEAD
       <div>
 
 
@@ -52,21 +51,6 @@ class App extends Component {
 
 
       </div>
-=======
-        <div>
-          <div className='App'>
-            <Route exact path='/' component={HomeNav} />
-            <Route exact path='/' component={Landing} />
-            <div className='container' />
-            <Route exact path='/signup' component={Signup} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/dashboard' component={Dashboard} />
-            <Route exact path='/CompDash' component={DashOrg} />
-            <Route exact path='/dashboard/takeQuiz' component={TakeQuiz} />
-            <Route exact path='/dashboard/createQuiz' component={CreateQuiz} />
-          </div>
-        </div>
->>>>>>> d0ba00b95afb200d2330bc97fec205e93580c024
       </Router>
     );
   }
