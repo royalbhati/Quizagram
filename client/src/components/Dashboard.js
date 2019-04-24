@@ -22,14 +22,15 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div>
-        <DashNav history={this.props.history} />
-        <div className='dashboard'>
-          <div className='sidebar'>
-            <LiveUpdate />
-          </div>
-          <div className='content'>
-            <PostCard className='content' />
-          </div>
+          <DashNav history={this.props.history}></DashNav>
+        <div className="dashboard">
+        <div className="sidebar">
+        <LiveUpdate history={this.props.history}></LiveUpdate>
+        </div>
+        <div className="content">
+        <PostCard className="content"></PostCard>
+        </div>
+
         </div>
       </div>
     );

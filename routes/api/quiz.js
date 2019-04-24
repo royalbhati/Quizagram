@@ -134,4 +134,40 @@ router.post(
   }
 );
 
+// @route   GET api/quiz/:companyName
+// @desc    Return quiz name and id
+// @access  Private
+router.get(
+  "/name/:companyName",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    errors = {};
+
+    // console.log(req.params.id);
+    User.find({ companyname: req.params.companyName })
+      .then(user => {
+        if (!user) {
+          return res.status(404).json(errors);
+        }
+        // console.log("dgdfgd", user[0]._id);
+
+        Quiz.find({ user: user[0]._id })
+          .then(quiz => {
+            if (!quiz) {
+              errors.Quiz = "There is no Quiz";
+              return res.status(404).json(errors);
+            }
+
+            res.json(
+              quiz.map(quiz => {
+                return { quiz_id: quiz._id, quizname: quiz.quizname };
+              })
+            );
+          })
+          .catch(err => res.status(404).json({ User: "There is no User" }));
+      })
+      .catch(err => res.status(404).json({ User: "There is no User" }));
+  }
+);
+
 module.exports = router;

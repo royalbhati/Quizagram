@@ -3,7 +3,7 @@ import Form from "./Form";
 import quiz from "../data/data.json";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
-import SubmitPage from './SubmitPage'
+import PublicQuizDisplay from './PublicQuizDisplay'
 import jwtDecode from 'jwt-decode'
 export default class TakeQuiz extends Component {
   state = {
@@ -20,6 +20,8 @@ export default class TakeQuiz extends Component {
 
   // }
   componentDidMount() {
+    // console.log(this.state.answer);
+    
     //todo check localstorage if token is not available than redirect to login page
     if (!localStorage.getItem("auth-token")) {
       this.props.history.push("/login");
@@ -32,9 +34,15 @@ export default class TakeQuiz extends Component {
    
     const options = Array.from(document.getElementsByClassName("opts"));
     options.forEach(elem => {
-      elem.classList.remove("btn-info");
-      elem.classList.add("btn-outline-info");
-    });
+        elem.classList.remove("btn-info");
+        elem.classList.add("btn-outline-info");
+        elem.disabled=false;    
+        elem.classList.remove("btn-success")
+        elem.classList.remove("btn-danger")
+  
+  
+      });
+     
     if(this.state.current===1){
       this.setState(prevState => ({
         current: prevState.current,
@@ -61,7 +69,8 @@ export default class TakeQuiz extends Component {
     );
   };
   submitQuiz = ()=>{
-    return(<SubmitPage onSubmitQuiz={this.onSubmitQuiz}></SubmitPage>)
+      const score=localStorage.getItem("score")
+    return(<PublicQuizDisplay score={score}></PublicQuizDisplay>)
   }
   
   render() {
@@ -79,7 +88,7 @@ export default class TakeQuiz extends Component {
         {this.state.current > this.state.prev &&
         this.state.len > this.state.current
           ? this.renderQues(this.state.current)
-          :<h1>Quiz completed</h1>}
+          :this.submitQuiz()}
       </div>
     );
   }

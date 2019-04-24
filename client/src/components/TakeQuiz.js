@@ -17,14 +17,14 @@ export default class TakeQuiz extends Component {
   // set toekn and fetch quizzes
   // const token = localStorage.getItem("auth-token");
   // setAuthToken(token);
-
   // }
+  
   componentDidMount() {
     //todo check localstorage if token is not available than redirect to login page
     if (!localStorage.getItem("auth-token")) {
       this.props.history.push("/login");
     }
-    // console.log("data aa gaya", this.props.location.state.quiz._id);
+    console.log("data aa gaya", this.props.location.state.quiz._id);
   }
 
   onClick = event => {
@@ -33,7 +33,10 @@ export default class TakeQuiz extends Component {
     options.forEach(elem => {
       elem.classList.remove("btn-info");
       elem.classList.add("btn-outline-info");
+      
+
     });
+   
     if (this.state.current === 1) {
       this.setState(prevState => ({
         current: prevState.current,

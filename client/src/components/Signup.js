@@ -106,8 +106,8 @@ class Signup extends Component {
             <input
               type='text'
               placeholder='Company Name'
-              name='name'
-              value={this.state.name}
+              name='companyName'
+              value={this.state.companyName}
               onChange={this.onChange}
             />
             <input
