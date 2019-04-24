@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 // import quiz from '../data/data.json'
-export default class Form extends Component {
-  state = {
-    
-  };
- 
+export default class SubmitPage extends Component {
+  state = {};
+
   render() {
     // console.log("props ka question", this.props.quiz.question);
     return (

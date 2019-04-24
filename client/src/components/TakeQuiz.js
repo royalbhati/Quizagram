@@ -3,8 +3,9 @@ import Form from "./Form";
 import quiz from "../data/data.json";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
-import SubmitPage from './SubmitPage'
-import jwtDecode from 'jwt-decode'
+import SubmitPage from "./SubmitPage";
+import jwtDecode from "jwt-decode";
+// import setAuthToken from "../utils/setAuthToken"
 export default class TakeQuiz extends Component {
   state = {
     quiz: this.props.location.state.quiz,
@@ -23,27 +24,31 @@ export default class TakeQuiz extends Component {
     if (!localStorage.getItem("auth-token")) {
       this.props.history.push("/login");
     }
+<<<<<<< HEAD
     console.log("data aa gaya", this.props.location.state.quiz._id);
+=======
+    // console.log("data aa gaya", this.props.location.state.quiz._id);
+>>>>>>> d0ba00b95afb200d2330bc97fec205e93580c024
   }
 
-  onClick = (event) => {
-    console.log("event",event.target.id)
+  onClick = event => {
+    console.log("event", event.target.id);
     const options = Array.from(document.getElementsByClassName("opts"));
     options.forEach(elem => {
       elem.classList.remove("btn-info");
       elem.classList.add("btn-outline-info");
     });
-    if(this.state.current===1){
+    if (this.state.current === 1) {
       this.setState(prevState => ({
         current: prevState.current,
         prev: prevState.current
       }));
-    }else{
+    } else {
       this.setState(prevState => ({
         current: prevState.current + 1,
         prev: prevState.current
-    }))}
-    
+      }));
+    }
   };
   renderQues = i => {
     return (
@@ -57,34 +62,43 @@ export default class TakeQuiz extends Component {
       />
     );
   };
-  submitQuiz = ()=>{
-    return(<SubmitPage onSubmitQuiz={this.onSubmitQuiz}></SubmitPage>)
-  }
-  onSubmitQuiz = ()=>{
+  submitQuiz = () => {
+    return <SubmitPage onSubmitQuiz={this.onSubmitQuiz} />;
+  };
+  onSubmitQuiz = () => {
     // console.log("submit ke time",this.state);
-    const answerObj={
-    answersArr:this.state,
-    user_id:jwtDecode('auth-token').id,
-    quiz_id:this.state.quiz._id
-    }
-    console.log("answer object",answerObj);
-    
-    axios.post('/api/quiz/eval',this.state)
-    .then(res=>console.log("submitted")
-    )
-  }
+    const answerObj = {
+      answersArr: this.state,
+      user_id: jwtDecode(localStorage.getItem("auth-token")).id,
+      quiz_id: this.state.quiz._id
+    };
+    // console.log(jwtDecode(getItem('auth-token'),"token");
+
+    console.log("answer object", answerObj);
+
+    setAuthToken(localStorage.getItem("auth-token"));
+    axios
+      .post("/api/quiz/eval", answerObj)
+      .then(res => console.log("submitted"));
+  };
   render() {
     return (
-      
       <div>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Test conducted by 'this.props.quiz.companyName'</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-
-</nav>
+        <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
+          <a class='navbar-brand' href='#'>
+            Test conducted by 'this.props.quiz.companyName'
+          </a>
+          <button
+            class='navbar-toggler'
+            type='button'
+            data-toggle='collapse'
+            data-target='#navbarColor02'
+            aria-controls='navbarColor02'
+            aria-expanded='false'
+            aria-label='Toggle navigation'>
+            <span class='navbar-toggler-icon' />
+          </button>
+        </nav>
         {this.state.current > this.state.prev &&
         this.state.len > this.state.current
           ? this.renderQues(this.state.current)

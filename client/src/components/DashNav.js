@@ -57,6 +57,9 @@ export default class DashNav extends Component {
 			})
 		})
 	}
+ onLogout(e) {
+	localStorage.removeItem("auth-token");
+}	
 	render() {
 		return (
 			<div>
@@ -120,7 +123,7 @@ export default class DashNav extends Component {
                     </ReactModal>
                     {/* <Link to="/dashboard/takeQuiz" className="btn button-style mr-5"> <i className="fas fa-pen"></i> Take Quiz</Link> */}
 
-                    <Link to='/login' className='btn button-style'>
+                    <Link to='/login' onClick={this.onLogout} className='btn button-style'>
                       Logout
                     </Link>
                   </div>
