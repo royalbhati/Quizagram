@@ -15,7 +15,10 @@ export default class CreateQuiz extends Component {
       options: [],
       ans: "",
       index: 0,
-      quizName: ""
+      quizName: "",
+      time: 0,
+      passingCriteria: "",
+      getQuiz: false
     };
     this.onChange = this.onChange.bind(this);
     this.newQuestion = this.newQuestion.bind(this);
@@ -63,7 +66,7 @@ export default class CreateQuiz extends Component {
         console.log(response);
       });
     //TODO redirect to dashboard
-    this.props.history.push("/compdash")
+    this.props.history.push("/compdash");
   }
 
   //this method create array of quiz and answer key array
@@ -97,109 +100,206 @@ export default class CreateQuiz extends Component {
   };
 
   render() {
-    return (
-      <div className='container mt-3'>
-        <form onSubmit={this.onSubmit}>
-          <div class='form-group'>
-            {" "}
-            <label>Enter Quiz Name</label>
-            <input
-              type='text'
-              class='form-control'
-              name='quizName'
-              onChange={this.onChange}
-              value={this.state.quizName}
-              placeholder='Quiz Name'
-            />
-          </div>
+    if (this.state.getQuiz === false) {
+      return (
+        <div className='container mt-3'>
+          <form onSubmit={this.onSubmit}>
+            <div class='form-group'>
+              {" "}
+              <label>Enter Quiz Name</label>
+              <input
+                type='text'
+                class='form-control'
+                name='quizName'
+                onChange={this.onChange}
+                value={this.state.quizName}
+                placeholder='Quiz Name'
+              />
+            </div>
 
-          <div class='form-group'>
-            <label >Question?</label>
-            <input
-              type='textarea'
-              class='form-control'
-              name='question'
-              value={this.state.question}
-              onChange={this.onChange}
-              placeholder='Type Question'
-            />
-          </div>
-          <div class='form-group'>
-            <div className='row'>
-              <div className='col-6'>
-                <label for='exampleFormControlInput1'>Option 1</label>
-                <input
-                  type='text'
-                  class='form-control'
-                  name='option1'
-                  value={this.state.option1}
-                  onChange={this.onChange}
-                  placeholder='Option 1'
-                />
+            <div class='form-group'>
+              <label>Question?</label>
+              <input
+                type='textarea'
+                class='form-control'
+                name='question'
+                value={this.state.question}
+                onChange={this.onChange}
+                placeholder='Type Question'
+              />
+            </div>
+            <div class='form-group'>
+              <div className='row'>
+                <div className='col-6'>
+                  <label for='exampleFormControlInput1'>Option 1</label>
+                  <input
+                    type='text'
+                    class='form-control'
+                    name='option1'
+                    value={this.state.option1}
+                    onChange={this.onChange}
+                    placeholder='Option 1'
+                  />
+                </div>
+                <div className='col-6'>
+                  <label for='exampleFormControlInput1'>Option 2</label>
+                  <input
+                    type='text'
+                    class='form-control'
+                    name='option2'
+                    value={this.state.option2}
+                    onChange={this.onChange}
+                    placeholder='Option 2'
+                  />
+                </div>
               </div>
-              <div className='col-6'>
-                <label for='exampleFormControlInput1'>Option 2</label>
-                <input
-                  type='text'
-                  class='form-control'
-                  name='option2'
-                  value={this.state.option2}
-                  onChange={this.onChange}
-                  placeholder='Option 2'
-                />
+              <div className='row mt-2'>
+                <div className='col-6'>
+                  <label for='exampleFormControlInput1'>Option 3</label>
+                  <input
+                    type='text'
+                    class='form-control'
+                    name='option3'
+                    value={this.state.option3}
+                    onChange={this.onChange}
+                    placeholder='Option 3'
+                  />
+                </div>
               </div>
             </div>
-            <div className='row mt-2'>
-              <div className='col-6'>
-                <label for='exampleFormControlInput1'>Option 3</label>
-                <input
-                  type='text'
-                  class='form-control'
-                  name='option3'
-                  value={this.state.option3}
-                  onChange={this.onChange}
-                  placeholder='Option 3'
-                />
-              </div>
-              <div className='col-6'>
-                <label>Option 4</label>
-                <input
-                  type='text'
-                  class='form-control'
-                  name='option4'
-                  value={this.state.option4}
-                  onChange={this.onChange}
-                  placeholder='Option 4'
-                />
-              </div>
+            <div class='form-group'>
+              <label>Answer</label>
+              <input
+                type='text'
+                class='form-control'
+                name='ans'
+                value={this.state.ans}
+                onChange={this.onChange}
+                placeholder='Type correct option index'
+              />
             </div>
-          </div>
-          <div class='form-group'>
-            <label>Answer</label>
-            <input
-              type='text'
-              class='form-control'
-              name='ans'
-              value={this.state.ans}
-              onChange={this.onChange}
-              placeholder='Type correct option index'
-            />
-          </div>
-          <div class='form-group'>
-            <div>
-              <button
-                onClick={this.newQuestion}
-                className='btn btn-primary mr-2'>
-                <i class='fas fa-plus' />
-              </button>
+            <div class='form-group'>
+              <div>
+                <button
+                  onClick={this.newQuestion}
+                  className='btn btn-primary mr-2'>
+                  <i class='fas fa-plus' />
+                </button>
 
-              <button type='submit' class='btn btn-primary'>
-                Submit
+                <button type='submit' class='btn btn-primary'>
+                  Submit
               </button>
+              </div>
             </div>
-          </div>
-        </form>
-      </div>
-    );
+          </form>
+        </div>
+      );
+
+    } else {
+      return (
+        <div className='container mt-3'>
+          <form onSubmit={this.onSubmit}>
+            <div class='form-group'>
+              {" "}
+              <label>Enter Quiz Name</label>
+              <input
+                type='text'
+                class='form-control'
+                name='quizName'
+                onChange={this.onChange}
+                value={this.state.quizName}
+                placeholder='Quiz Name'
+              />
+            </div>
+
+            <div class='form-group'>
+              <label>Question?</label>
+              <input
+                type='textarea'
+                class='form-control'
+                name='question'
+                value={this.state.question}
+                onChange={this.onChange}
+                placeholder='Type Question'
+              />
+            </div>
+            <div class='form-group'>
+              <div className='row'>
+                <div className='col-6'>
+                  <label for='exampleFormControlInput1'>Option 1</label>
+                  <input
+                    type='text'
+                    class='form-control'
+                    name='option1'
+                    value={this.state.option1}
+                    onChange={this.onChange}
+                    placeholder='Option 1'
+                  />
+                </div>
+                <div className='col-6'>
+                  <label for='exampleFormControlInput1'>Option 2</label>
+                  <input
+                    type='text'
+                    class='form-control'
+                    name='option2'
+                    value={this.state.option2}
+                    onChange={this.onChange}
+                    placeholder='Option 2'
+                  />
+                </div>
+              </div>
+              <div className='row mt-2'>
+                <div className='col-6'>
+                  <label for='exampleFormControlInput1'>Option 3</label>
+                  <input
+                    type='text'
+                    class='form-control'
+                    name='option3'
+                    value={this.state.option3}
+                    onChange={this.onChange}
+                    placeholder='Option 3'
+                  />
+                </div>
+                <div className='col-6'>
+                  <label>Option 4</label>
+                  <input
+                    type='text'
+                    class='form-control'
+                    name='option4'
+                    value={this.state.option4}
+                    onChange={this.onChange}
+                    placeholder='Option 4'
+                  />
+                </div>
+              </div>
+            </div>
+            <div class='form-group'>
+              <label>Answer</label>
+              <input
+                type='text'
+                class='form-control'
+                name='ans'
+                value={this.state.ans}
+                onChange={this.onChange}
+                placeholder='Type correct option index'
+              />
+            </div>
+            <div class='form-group'>
+              <div>
+                <button
+                  onClick={this.newQuestion}
+                  className='btn btn-primary mr-2'>
+                  <i class='fas fa-plus' />
+                </button>
+
+                <button type='submit' class='btn btn-primary'>
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      );
+    }
   }
 }

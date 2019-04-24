@@ -2,20 +2,21 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
-
+const Post = require("../../models/Posts");
 // @route   POST api/post
 // @desc    Create post
 // @access  Private
 router.post(
   "/",
-//   passport.authenticate("jwt", { session: false }),
+  //   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+    console.log(req.body);
+
     const newPost = new Post({
       text: req.body.post,
       name: req.body.name,
-      user: req.user.user_id
+      user: req.body.user_id
     });
-
     newPost.save().then(post => res.json(post));
   }
 );
