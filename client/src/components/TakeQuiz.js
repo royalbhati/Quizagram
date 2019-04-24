@@ -33,7 +33,10 @@ export default class TakeQuiz extends Component {
     options.forEach(elem => {
       elem.classList.remove("btn-info");
       elem.classList.add("btn-outline-info");
+      
+
     });
+   
     if (this.state.current === 1) {
       this.setState(prevState => ({
         current: prevState.current,

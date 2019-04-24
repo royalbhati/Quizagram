@@ -10,8 +10,9 @@ export default class Landing extends Component {
 				<div class="d-md-flex">
 					<div class="temps-amkls_banner_txt">
 						<h3 class="temps-amkls_pvt-title">Quiza<span>Gram</span></h3>
-						<p class="text-sty-banner">Sed ut perspiciatis unde omnis iste natus doloremque
-							laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.</p>
+						<p class="text-sty-banner">Create Quizzes for competitions or for screening employees. Connect 
+						with young minds and prepare for exams
+							</p>
 						<Link to="/signup"  class="btn button-style mt-md-5 mt-4">Get Started</Link>
 					</div>
 					<div class="banner-img">

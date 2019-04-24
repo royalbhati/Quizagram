@@ -32,6 +32,21 @@ export default class CreateQuiz extends Component {
   //send quiz to backend
   async onSubmit(e) {
     e.preventDefault();
+    const quiz = {};
+    quiz.index = this.state.index;
+    quiz.question = this.state.question;
+    quiz.options = [
+      this.state.option1,
+      this.state.option2,
+      this.state.option3,
+      this.state.option4
+    ];
+
+    await this.setState(previous => ({
+      index: this.state.index + 1,
+      quizzes: [...previous.quizzes, quiz],
+      answer: [...previous.answer, previous.ans]
+    }));
     //send quiz to backend and redirect page to dashboard
     const quizzes = {};
     quizzes.answer = this.state.answer;
@@ -47,6 +62,7 @@ export default class CreateQuiz extends Component {
         console.log(response);
       });
     //TODO redirect to dashboard
+    this.props.history.push("/compdash")
   }
 
   //this method create array of quiz and answer key array
