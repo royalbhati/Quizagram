@@ -44,7 +44,7 @@ export default class LiveUpdates extends Component {
           value='TCS'
           name='sds'
           className='alert alert-dismissible alert-warning'>
-          TCS
+          <h4 className='alert-heading'>TCS</h4>
         </button>
         <button className='alert alert-dismissible alert-success'>
           <h4 className='alert-heading'>Infosys</h4>

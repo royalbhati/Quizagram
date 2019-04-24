@@ -19,6 +19,7 @@ export default class Dashboard extends Component {
     }
   }
 
+
   render() {
     return (
       <div>
@@ -28,7 +29,7 @@ export default class Dashboard extends Component {
         <LiveUpdate history={this.props.history}></LiveUpdate>
         </div>
         <div className="content">
-        <PostCard className="content"></PostCard>
+        <PostCard  className="content"></PostCard>
         </div>
 
         </div>

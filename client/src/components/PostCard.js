@@ -39,66 +39,7 @@ export default class PostCard extends Component {
             </Skeleton>
           </Card>
         </div>
-        <div className='feedPost'>
-          <Card
-            className='m-auto'
-            style={{ width: 600, marginTop: 16 }}
-            actions={[
-              <Icon type='setting' />,
-              <Icon type='edit' />,
-              <Icon type='ellipsis' />
-            ]}>
-            <Skeleton loading={false} avatar active>
-              <Meta
-                avatar={
-                  <Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
-                }
-                title='Abhinav'
-                description='This is the description'
-              />
-            </Skeleton>
-          </Card>
-        </div>
-        <div className='feedPost'>
-          <Card
-            className='m-auto'
-            style={{ width: 600, marginTop: 16 }}
-            actions={[
-              <Icon type='setting' />,
-              <Icon type='edit' />,
-              <Icon type='ellipsis' />
-            ]}>
-            <Skeleton loading={false} avatar active>
-              <Meta
-                avatar={
-                  <Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
-                }
-                title='Royal'
-                description='This is the description'
-              />
-            </Skeleton>
-          </Card>
-        </div>
-        <div className='feedPost'>
-          <Card
-            className='m-auto'
-            style={{ width: 600, marginTop: 16 }}
-            actions={[
-              <Icon type='setting' />,
-              <Icon type='edit' />,
-              <Icon type='ellipsis' />
-            ]}>
-            <Skeleton loading={false} avatar active>
-              <Meta
-                avatar={
-                  <Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
-                }
-                title='Sourav Mangla'
-                description='This is the description'
-              />
-            </Skeleton>
-          </Card>
-        </div>
+       
       </div>
     );
   }

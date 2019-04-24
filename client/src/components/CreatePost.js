@@ -10,7 +10,7 @@ export default class CreatePost extends Component {
         >
         <div className="AddPost">
         <img className="PostBoxpic" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-         <input className="PostBoxInput" type="text" placeholder="Create a Post"></input>
+         <input className="PostBoxInput" type="textarea" placeholder="Create a Post"></input>
          </div>
         </Card>
       </div>
