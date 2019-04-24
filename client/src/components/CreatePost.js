@@ -20,7 +20,7 @@ this.setState({
     console.log(this.state);
     //axios request 
     axios.post('/api/post',this.state)
-    .then(()=>{console.log("post submitted")
+    .then(()=>{console.log("post submitted")    
     })
   }
   render() {

@@ -41,7 +41,7 @@ export default class Form extends Component {
 
   // For public quiz
   if(this.props.actualAnswer){
-    console.log("lolololollololololl");
+    // console.log("chl gye re baba");
     
     if(event.target.id==this.props.actualAnswer[this.state.current]){
       // this.setState(prevState=>{

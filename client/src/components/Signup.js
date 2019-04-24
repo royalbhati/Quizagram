@@ -9,7 +9,8 @@ class Signup extends Component {
       email: "",
       password1: "",
       password2: "",
-      mobile: ""
+      mobile: "",
+      companyName: ""
     };
   }
   onClick = event => {
@@ -21,7 +22,8 @@ class Signup extends Component {
       email: "",
       password1: "",
       password2: "",
-      mobile: ""
+      mobile: "",
+      companyName: ""
     });
     container.classList.add("right-panel-active");
   };
@@ -32,7 +34,8 @@ class Signup extends Component {
       email: "",
       password1: "",
       password2: "",
-      mobile: ""
+      mobile: "",
+      companyName: ""
     });
     container.classList.remove("right-panel-active");
   };
@@ -62,12 +65,12 @@ class Signup extends Component {
   onCompanySignup = e => {
     e.preventDefault();
     const newUser = {
-      name: this.state.name,
       email: this.state.email,
       password: this.state.password1,
       password2: this.state.password2,
       mobile: this.state.mobile,
-      usertype: "organization"
+      usertype: "organization",
+      companyName: this.state.companyName
     };
     //axios post request
     axios
@@ -103,8 +106,8 @@ class Signup extends Component {
             <input
               type='text'
               placeholder='Company Name'
-              name='name'
-              value={this.state.name}
+              name='companyName'
+              value={this.state.companyName}
               onChange={this.onChange}
             />
             <input
@@ -135,6 +138,7 @@ class Signup extends Component {
               name='mobile'
               onChange={this.onChange}
             />
+
             <button className='buttonSign' onClick={this.onCompanySignup}>
               Company Signup
             </button>

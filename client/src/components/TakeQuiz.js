@@ -21,8 +21,8 @@ export default class TakeQuiz extends Component {
   // set toekn and fetch quizzes
   // const token = localStorage.getItem("auth-token");
   // setAuthToken(token);
-
   // }
+  
   componentDidMount() {
     //todo check localstorage if token is not available than redirect to login page
     if (!localStorage.getItem("auth-token")) {
