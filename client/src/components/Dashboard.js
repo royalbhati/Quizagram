@@ -8,7 +8,10 @@ export default class Dashboard extends Component {
     if (!localStorage.getItem("auth-token")) {
       this.props.history.push("/login");
     }
+
+    
   }
+
 
   render() {
     return (
@@ -19,7 +22,7 @@ export default class Dashboard extends Component {
         <LiveUpdate history={this.props.history}></LiveUpdate>
         </div>
         <div className="content">
-        <PostCard className="content"></PostCard>
+        <PostCard  className="content"></PostCard>
         </div>
 
         </div>

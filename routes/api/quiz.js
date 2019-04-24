@@ -62,13 +62,14 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     errors = {};
-    // console.log(req.params.id);
     Quiz.findById({ _id: req.params.id })
       .then(quiz => {
         if (!quiz) {
           errors.quiz = "There is no Quiz";
           return res.status(404).json(errors);
         }
+        console.log("sadsad",quiz);
+        
         res.json(quiz);
       })
       .catch(err => res.status(404).json({ Quiz: "There is no Quiz" }));

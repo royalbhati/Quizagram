@@ -11,7 +11,11 @@ export default class TakeQuiz extends Component {
     quiz: this.props.location.state.quiz,
     current: 0,
     prev: -1,
-    len: this.props.location.state.quiz.answer.length
+    len: this.props.location.state.quiz.answer.length,
+    time:{},
+    seconds:30,
+    timer:0,
+    timeLeft:true
   };
   // componentDidMount() {
   // set toekn and fetch quizzes
@@ -24,7 +28,14 @@ export default class TakeQuiz extends Component {
     if (!localStorage.getItem("auth-token")) {
       this.props.history.push("/login");
     }
+    let timeLeftVar = this.secondsToTime(this.state.seconds);
+    this.setState({ time: timeLeftVar });
     console.log("data aa gaya", this.props.location.state.quiz._id);
+    if (this.state.timer == 0 && this.state.seconds > 0) {
+      this.setState({
+        timer : setInterval(this.countDown, 1000)
+      })
+  }
   }
 
   onClick = event => {
@@ -61,6 +72,7 @@ export default class TakeQuiz extends Component {
       />
     );
   };
+  
   submitQuiz = () => {
     return <SubmitPage onSubmitQuiz={this.onSubmitQuiz} />;
   };
@@ -80,7 +92,42 @@ export default class TakeQuiz extends Component {
       .post("/api/quiz/eval", answerObj)
       .then(res => console.log("submitted"));
   };
+  secondsToTime=(secs)=>{
+    let hours = Math.floor(secs / (60 * 60));
+
+    let divisor_for_minutes = secs % (60 * 60);
+    let minutes = Math.floor(divisor_for_minutes / 60);
+
+    let divisor_for_seconds = divisor_for_minutes % 60;
+    let seconds = Math.ceil(divisor_for_seconds);
+
+    let obj = {
+      "h": hours,
+      "m": minutes,
+      "s": seconds
+    };
+    return obj;
+  }
+  startTimer=()=> {
+    }
+  countDown=()=> {
+    // Remove one second, set state so a re-render happens.
+    let seconds = this.state.seconds - 1;
+    this.setState({
+      time: this.secondsToTime(seconds),
+      seconds: seconds,
+    });
+    
+    // Check if we're at zero.
+    if (seconds == 0) { 
+      clearInterval(this.state.timer);
+      this.setState({
+        timeLeft:false
+      })
+    }
+  }
   render() {
+
     return (
       <div>
         <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
@@ -97,9 +144,13 @@ export default class TakeQuiz extends Component {
             aria-label='Toggle navigation'>
             <span class='navbar-toggler-icon' />
           </button>
+
         </nav>
-        {this.state.current > this.state.prev &&
-        this.state.len > this.state.current
+        
+        <h4 style={{"background":"#FF9800","color":"white"}}>Time left :  &nbsp;&nbsp;  m: {this.state.time.m} s: {this.state.time.s}</h4>
+       
+        {(this.state.current > this.state.prev &&
+        this.state.len > this.state.current) && this.state.timeLeft
           ? this.renderQues(this.state.current)
           : this.submitQuiz()}
       </div>

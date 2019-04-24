@@ -10,6 +10,7 @@ export default class Form extends Component {
     ],
     result:[],
     current: 0,
+    correct:" "
  
   };
   onClick = event => {
@@ -22,6 +23,7 @@ export default class Form extends Component {
       question: this.props.quiz.index,
       a:  event.target.id
     };
+    
     this.setState(prevState => {
       const prevOpt = prevState.answers[prevState.answers.length - 1].question;
       if (
@@ -39,9 +41,15 @@ export default class Form extends Component {
 
   // For public quiz
   if(this.props.actualAnswer){
+    console.log("lolololollololololl");
+    
     if(event.target.id==this.props.actualAnswer[this.state.current]){
-      this.setState(prevState=>{
-        return {result:[...prevState.result,1]}
+      // this.setState(prevState=>{
+      //   return {result:prevState.result.concat(1)}
+      // })
+
+       this.setState(prevState=>{
+        return {correct:true}
       })
         // if(event.target.classList.contains("btn-info")|| event.target.classList.contains("btn-outline-info")){
           event.target.classList.remove("btn-outline-info");
@@ -54,9 +62,14 @@ export default class Form extends Component {
         });
       }
      
-    else if(!event.target.id==this.props.actualAnswer[this.state.current]){
+    else if(event.target.id!==this.props.actualAnswer[this.state.current]){
+      
+      // this.setState(prevState=>{
+      //   return {result:prevState.result.concat(-1)}
+      // })
+
       this.setState(prevState=>{
-        return {result:[...prevState.result,-1]}
+        return {correct:false}
       })
 
       // event.target.classList.remove("btn-outline-info");
@@ -70,7 +83,16 @@ export default class Form extends Component {
 
            elem.disabled=true;
           }
+          if(elem.id==this.props.actualAnswer[this.state.current]){
+            elem.disabled=false;
+            elem.classList.remove("btn-outline-info")
+            elem.classList.add("btn-success")
+
+
+
+          }
         });
+        
     }
     else{
       this.setState(prevState=>{
@@ -78,12 +100,15 @@ export default class Form extends Component {
       })
     }
     console.log("props ka length",this.props.actualAnswer.length)
-    console.log("result ka length",this.state.result.length)
+    console.log("result ka length",this.state.result.length+1)
 
-    if(this.state.result.length+1==this.props.actualAnswer.length){
-
+    if((this.state.result.length+1)==this.props.actualAnswer.length){
+      console.log("resulrrrrrrrrrrrrrrrrrr",this.state.result);
+      
       const reducer = (accumulator, currentValue) => accumulator + currentValue;
       const score=this.state.result.reduce(reducer)
+      console.log("sccccccore",score);
+      
       localStorage.setItem("score",score)
     }
  
@@ -142,6 +167,7 @@ export default class Form extends Component {
                 Next
               </button>
             </div>
+            <h1>{!this.state.correct ? <div>{this.props.actualAnswer[this.state.current]}</div>: null}</h1>
           </div>
         </form>
       </div>

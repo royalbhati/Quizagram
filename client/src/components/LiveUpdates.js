@@ -13,7 +13,7 @@ export default class LiveUpdates extends Component {
     //TODO sourav 
     setAuthToken(localStorage.getItem("auth-token"))
 
-    axios.get(`/api/quiz/5cbc64e4995dd2279cc9f62a`)
+    axios.get(`/api/quiz/5cc0788658c367471adb966e`)
 		.then(res=>{
         console.log(res.data);
         this.props.history.push({
@@ -22,6 +22,7 @@ export default class LiveUpdates extends Component {
 				state: { quiz:res.data }
 			
     })
+    
   })}
   render(){
   return (
@@ -39,7 +40,8 @@ export default class LiveUpdates extends Component {
     />
   </Card> */}
   <button onClick={this.onClick} value ="TCS" name="sds" className="alert alert-dismissible alert-warning">
-  TCS
+  <h4 className="alert-heading">TCS</h4>
+
 </button>
 <button className="alert alert-dismissible alert-success">
   <h4 className="alert-heading">Infosys</h4>
