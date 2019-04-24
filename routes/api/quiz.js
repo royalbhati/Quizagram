@@ -29,7 +29,13 @@ router.post(
     newQuiz.user = req.user.id;
     newQuiz.quizzes = req.body.quizzes;
     newQuiz.answer = req.body.answer;
-    new Quiz(newQuiz).save().then(quiz => res.json(quiz));
+    newQuiz.quizname = req.body.quizName;
+    console.log(newQuiz);
+
+    new Quiz(newQuiz)
+      .save()
+      .then(quiz => res.json(quiz))
+      .catch(err => console.log(err));
   }
 );
 
@@ -97,7 +103,7 @@ router.post(
         User.find({ _id: req.body.user_id })
           .then(user => {
             console.log(req.body.answersArr);
-            
+
             // const user_answer = data.answer.map(ans => ans.a);
             const user_answer = req.body.answersArr.quiz.answer;
             // console.log(user_answer);

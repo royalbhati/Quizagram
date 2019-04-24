@@ -24,6 +24,10 @@ const quizSchema = new Schema({
       }
     }
   ],
+  quizname: {
+    type: String,
+    required: true
+  },
   answer: {
     type: [String],
     required: true

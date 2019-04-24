@@ -19,11 +19,11 @@ router.get("/", (req, res) => {
 // @desc    Register users
 // @access  Public
 router.post("/register", (req, res) => {
-  const { errors, isValid } = validateRegisterInput(req.body);
-  //check Validationimport axios from "axios"
-  if (!isValid) {
-    return res.status(400).json(errors);
-  }
+  // const { errors, isValid } = validateRegisterInput(req.body);
+  // //check Validationimport axios from "axios"
+  // if (!isValid) {
+  //   return res.status(400).json(errors);
+  // }
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
       errors.email = "Email already exists";
@@ -35,10 +35,11 @@ router.post("/register", (req, res) => {
         d: "mm" //default
       });
       const newUser = new User({
-        name: req.body.name,
+        name: req.body.name ? req.body.name : "",
         email: req.body.email,
         mobile: req.body.mobile,
         avatar,
+        companyname: req.body.companyName ? req.body.companyName : "",
         usertype: req.body.usertype,
         password: req.body.password
       });
@@ -86,7 +87,7 @@ router.post("/login", (req, res) => {
         const payload = {
           id: user.id,
           name: user.name,
-          avatar: user.avatar,
+          companyName: user.companyname,
           type: user.usertype
         };
 

@@ -24,11 +24,7 @@ export default class TakeQuiz extends Component {
     if (!localStorage.getItem("auth-token")) {
       this.props.history.push("/login");
     }
-<<<<<<< HEAD
-    console.log("data aa gaya", this.props.location.state.quiz._id);
-=======
     // console.log("data aa gaya", this.props.location.state.quiz._id);
->>>>>>> d0ba00b95afb200d2330bc97fec205e93580c024
   }
 
   onClick = event => {

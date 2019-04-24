@@ -14,7 +14,8 @@ export default class CreateQuiz extends Component {
       option4: "",
       options: [],
       ans: "",
-      index: 0
+      index: 0,
+      quizName: ""
     };
     this.onChange = this.onChange.bind(this);
     this.newQuestion = this.newQuestion.bind(this);
@@ -36,7 +37,7 @@ export default class CreateQuiz extends Component {
     const quizzes = {};
     quizzes.answer = this.state.answer;
     quizzes.quizzes = this.state.quizzes;
-
+    quizzes.quizName = this.state.quizName;
     const token = localStorage.getItem("auth-token");
     setAuthToken(token);
 
@@ -84,11 +85,23 @@ export default class CreateQuiz extends Component {
       <div className='container mt-3'>
         <form onSubmit={this.onSubmit}>
           <div class='form-group'>
-            <label for='Input1'>Question?</label>
+            {" "}
+            <label>Enter Quiz Name</label>
+            <input
+              type='text'
+              class='form-control'
+              name='quizName'
+              onChange={this.onChange}
+              value={this.state.quizName}
+              placeholder='Quiz Name'
+            />
+          </div>
+
+          <div class='form-group'>
+            <label >Question?</label>
             <input
               type='textarea'
               class='form-control'
-              id='Input1'
               name='question'
               value={this.state.question}
               onChange={this.onChange}
