@@ -13,6 +13,17 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div>
+<<<<<<< HEAD
+          <DashNav history={this.props.history}></DashNav>
+        <div className="dashboard">
+        <div className="sidebar">
+        <LiveUpdate history={this.props.history}></LiveUpdate>
+        </div>
+        <div className="content">
+        <PostCard className="content"></PostCard>
+        </div>
+
+=======
         <DashNav history={this.props.history} />
         <div className='dashboard'>
           <div className='sidebar'>
@@ -21,6 +32,7 @@ export default class Dashboard extends Component {
           <div className='content'>
             <PostCard className='content' />
           </div>
+>>>>>>> d0ba00b95afb200d2330bc97fec205e93580c024
         </div>
       </div>
     );
