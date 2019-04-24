@@ -48,8 +48,8 @@ export default class Form extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
-  };
+
+    };
 
   optionRender = () => {
     return this.props.quiz.options.map((elem, i) => {

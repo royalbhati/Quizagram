@@ -14,11 +14,13 @@ export default class DashboardOrg extends Component {
       <div>
       <OrgNav></OrgNav>
       <div className="container mt-5">
-      <Link class="alert alert-dismissible alert-warning compdiv mx-auto">
+      <div className="compDiv">
+      <button class="alert alert-dismissible alert-warning ">
           <h4 class="alert-heading compButton">Create Quiz</h4>
-      </Link>
+      </button>
          {/* <Link class="btn button-style">Create Quiz</Link> */}
-      </div>
+         </div>
+         </div>
       </div>
     )
   }
