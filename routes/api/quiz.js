@@ -8,6 +8,7 @@ const keys = require("../../config/keys");
 //Load Quiz Model
 const Quiz = require("../../models/Quizzes");
 const Stats = require("../../models/User_Stats");
+const User = require("../../models/Quiz_User");
 
 // @route   POST api/quiz/create-quiz
 // @desc    Add new quiz
@@ -79,22 +80,49 @@ router.get(
 // @access  Private
 router.post(
   "/eval",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // Get user detail from token and get quiz data using id
     errors = {};
     // console.log(req.params.id);
-    Quiz.findById({ _id: req.id })
+    // Quiz.findById({ _id: req.body.quiz_id })
+    Quiz.findById({ _id: "5cbc71a4dc625c37828e3802" })
       .then(quiz => {
         if (!quiz) {
           errors.quiz = "There is no Quiz";
           return res.status(404).json(errors);
         }
-        //compare answers store the stats and update rank
-        [
 
-        ]
-        res.json(quiz);
+        const data = {
+          answer: [{ question: 0, a: "1" }, { question: 1, a: "1" }]
+        };
+        // console.log(quiz);
+
+        const user_answer = data.answer.map(ans => ans.a);
+        // console.log(user_answer);
+        const quiz_answer = quiz.answer;
+        // console.log(quiz_answer);
+
+        let count = 0;
+        for (let i = 0; i < user_answer.length; i++) {
+          if (user_answer[i] === quiz_answer[i]) {
+            count++;
+          }
+        }
+        const right_answer = count * 2;
+        const wrong_answer = quiz_answer * -0.5;
+        // total answer = 
+
+        // const newStats
+
+        // res.json(quiz);
+        //get user from req.body.user_id
+        //compare answers and store the result of the quiz and update rank
+        // User.find({ _id: req.body.user_id })
+        //   .then(user => {
+
+        //   })
+        //   .catch(err => res.status(404).json({ User: "Not a User" }));
       })
       .catch(err => res.status(404).json({ Quiz: "There is no Quiz" }));
   }

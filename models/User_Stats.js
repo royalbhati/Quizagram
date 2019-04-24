@@ -24,7 +24,7 @@ const statsSchema = new Schema({
       }
     }
   ],
-  marks:{
+  results:{ // result of every quiz in percent
       type:[Number],
       required:true
   },
