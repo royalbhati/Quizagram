@@ -80,7 +80,7 @@ router.get(
 // @access  Private
 router.post(
   "/eval",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // Get user detail from token and get quiz data using id
     errors = {};
@@ -111,10 +111,15 @@ router.post(
         }
         const right_answer = count * 2;
         const wrong_answer = quiz_answer * -0.5;
-        // total answer = 
+        const number = right_answer + wrong_answer;
 
-        // const newStats
-
+        const newStats = {};
+        newStats.user_id = req.user.id;
+        newStats.quiz_done = [
+          { total_question: data.question.length, right_answer: count }
+        ];
+        newStats.result = [number];
+        
         // res.json(quiz);
         //get user from req.body.user_id
         //compare answers and store the result of the quiz and update rank

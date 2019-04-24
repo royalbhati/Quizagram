@@ -3,15 +3,19 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const statsSchema = new Schema({
-  user: {
+  user_id: {
     type: Schema.Types.ObjectId,
     ref: "quiz_user"
   },
-  rank: {
-    type: Number,
-    required: true,
-    default:0
-  },
+  // quiz: {
+  //   type: [Schema.Types.ObjectId],
+  //   ref: "quiz"
+  // },
+  // rank: {
+  //   type: Number,
+  //   required: true,
+  //   default:0
+  // },
   quiz_done: [
     {
       total_question: {
@@ -24,9 +28,11 @@ const statsSchema = new Schema({
       }
     }
   ],
-  results:{ // result of every quiz in percent
-      type:[Number],
-      required:true
+  results: {
+    // result of every quiz in percent
+    type: [Number],
+    required: true,
+    default: []
   },
   date: {
     type: Date,
