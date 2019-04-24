@@ -100,7 +100,7 @@ export default class DashNav extends Component {
 
 							<div className="search-temps-amklayouts mr-3">
 
-							<button className="btn button-style mr-5" onClick={this.handleOpenModal}>Trigger Modal</button>
+							<button className="btn button-style mr-5" onClick={this.handleOpenModal}>Take Quiz</button>
         <ReactModal
 					 isOpen={this.state.showModal}
 					 style={customStyles}

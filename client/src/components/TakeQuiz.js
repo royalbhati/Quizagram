@@ -3,7 +3,8 @@ import Form from "./Form";
 import quiz from "../data/data.json";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
-import SubmitPage from "./SubmitPage";
+import SubmitPage from './SubmitPage'
+import jwtDecode from 'jwt-decode'
 export default class TakeQuiz extends Component {
   state = {
     quiz: this.props.location.state.quiz,
@@ -18,11 +19,11 @@ export default class TakeQuiz extends Component {
 
   // }
   componentDidMount() {
-    // todo check localstorage if token is not available than redirect to login page
-    if (!localStorage.getItem("auth-token")) {
-      this.props.history.push("/login");
-    }
-    // console.log("data aa gaya", this.props.location.state.detail);
+    //todo check localstorage if token is not available than redirect to login page
+    // if (!localStorage.getItem("auth-token")) {
+    //   this.props.history.push("/login");
+    // }
+    console.log("data aa gaya", this.props.location.state.quiz._id);
   }
 
   onClick = event => {
@@ -52,12 +53,26 @@ export default class TakeQuiz extends Component {
         quiz={this.state.quiz.quizzes[i]}
         len={this.state.len}
         current={this.state.current}
+        onSubmitQuiz={this.onSubmitQuiz}
       />
     );
   };
-  submitQuiz = () => {
-    return <SubmitPage />;
-  };
+  submitQuiz = ()=>{
+    return(<SubmitPage onSubmitQuiz={this.onSubmitQuiz}></SubmitPage>)
+  }
+  onSubmitQuiz = ()=>{
+    // console.log("submit ke time",this.state);
+    const answerObj={
+    answersArr:this.state,
+    user_id:jwtDecode('auth-token').id,
+    quiz_id:this.state.quiz._id
+    }
+    console.log("answer object",answerObj);
+    
+    axios.post('/api/quiz/eval',this.state)
+    .then(res=>console.log("submitted")
+    )
+  }
   render() {
     return (
       <div>

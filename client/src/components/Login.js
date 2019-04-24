@@ -38,8 +38,9 @@ class Login extends Component {
       .then(response => {
         // const token = response.data["x-auth"];
         const { token } = response.data;
+        
         // console.log(response.data);
-        localStorage.setItem("auth-token", token);
+        localStorage.setItem("auth-token",token);
         this.props.history.push('/dashboard')  
 		//TODO redirect to dashboard
       })

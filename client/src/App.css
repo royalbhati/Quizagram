@@ -1740,6 +1740,6 @@ button.btn-cont-temps-amk {
   text-align: center;
 }
 
-/* .compdiv{
-      margin-left:5rem;
-} */
+.compDiv{
+      margin:0 auto;
+}
