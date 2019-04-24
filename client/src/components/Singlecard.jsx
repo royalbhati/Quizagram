@@ -10,8 +10,8 @@ export default class Singlecard extends Component {
         <div class='col'>
           <div class='card' style={{ width: " 18rem" }}>
             <div class='card-body'>
-              <h5 class='card-title'>{quizname}</h5>
-              <p class='card-text'>{quiz_id} </p>
+              <h5 class='card-title'><strong>Quiz Name:</strong>{quizname}</h5>
+              <h6 class='card-text'><strong>Key:</strong>{quiz_id} </h6>
             </div>
           </div>
         </div>

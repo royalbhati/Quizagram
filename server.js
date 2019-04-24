@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const passport = require("passport");
 const user = require("./routes/api/user_handler");
 const quiz = require("./routes/api/quiz");
+const post = require("./routes/api/post")
 const cors = require("cors");
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(cors());
 
 app.use("/api/users", user);
 app.use("/api/quiz",quiz);
+app.use("/api/post", post);
 // app.use("/api/posts", posts);
 // app.use("/api/profile", profile);
 // Server static assets if in production
