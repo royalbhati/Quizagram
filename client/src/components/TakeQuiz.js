@@ -3,8 +3,9 @@ import Form from "./Form";
 import quiz from "../data/data.json";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
-import SubmitPage from './SubmitPage'
-import jwtDecode from 'jwt-decode'
+import SubmitPage from "./SubmitPage";
+import jwtDecode from "jwt-decode";
+// import setAuthToken from "../utils/setAuthToken"
 export default class TakeQuiz extends Component {
   state = {
     quiz: this.props.location.state.quiz,
@@ -20,10 +21,10 @@ export default class TakeQuiz extends Component {
   // }
   componentDidMount() {
     //todo check localstorage if token is not available than redirect to login page
-    // if (!localStorage.getItem("auth-token")) {
-    //   this.props.history.push("/login");
-    // }
-    console.log("data aa gaya", this.props.location.state.quiz._id);
+    if (!localStorage.getItem("auth-token")) {
+      this.props.history.push("/login");
+    }
+    // console.log("data aa gaya", this.props.location.state.quiz._id);
   }
 
   onClick = event => {
@@ -57,22 +58,25 @@ export default class TakeQuiz extends Component {
       />
     );
   };
-  submitQuiz = ()=>{
-    return(<SubmitPage onSubmitQuiz={this.onSubmitQuiz}></SubmitPage>)
-  }
-  onSubmitQuiz = ()=>{
+  submitQuiz = () => {
+    return <SubmitPage onSubmitQuiz={this.onSubmitQuiz} />;
+  };
+  onSubmitQuiz = () => {
     // console.log("submit ke time",this.state);
-    const answerObj={
-    answersArr:this.state,
-    user_id:jwtDecode('auth-token').id,
-    quiz_id:this.state.quiz._id
-    }
-    console.log("answer object",answerObj);
-    
-    axios.post('/api/quiz/eval',answerObj)
-    .then(res=>console.log("submitted")
-    )
-  }
+    const answerObj = {
+      answersArr: this.state,
+      user_id: jwtDecode(localStorage.getItem("auth-token")).id,
+      quiz_id: this.state.quiz._id
+    };
+    // console.log(jwtDecode(getItem('auth-token'),"token");
+
+    console.log("answer object", answerObj);
+
+    setAuthToken(localStorage.getItem("auth-token"));
+    axios
+      .post("/api/quiz/eval", answerObj)
+      .then(res => console.log("submitted"));
+  };
   render() {
     return (
       <div>

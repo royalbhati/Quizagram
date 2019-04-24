@@ -28,7 +28,7 @@ class Login extends Component {
 
   onLogin = e => {
     e.preventDefault();
-    var user = {
+    const user = {
       email: this.state.email,
       password: this.state.password
     };
