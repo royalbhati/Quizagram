@@ -33,7 +33,7 @@ export default class PostCard extends Component {
                 avatar={
                   <Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
                 }
-                title='Bhati'
+                title='Abhinav'
                 description="Now let's use some more properties. Consider a list of 6 items, all with a fixed dimensions in a matter of aesthetics but they could be auto-sized. We want them to be evenly and nicely distributed on the horizontal axis so that when we resize the browser, everything is fine (without media queries!)."
               />
             </Skeleton>
@@ -53,7 +53,7 @@ export default class PostCard extends Component {
                 avatar={
                   <Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
                 }
-                title='Royal'
+                title='Aakash'
                 description='This is the description'
               />
             </Skeleton>
@@ -73,7 +73,7 @@ export default class PostCard extends Component {
                 avatar={
                   <Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
                 }
-                title='Royal BHati'
+                title='Royal Bhati'
                 description='This is the description'
               />
             </Skeleton>

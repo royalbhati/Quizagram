@@ -86,48 +86,43 @@ router.post(
     errors = {};
     // console.log(req.params.id);
     // Quiz.findById({ _id: req.body.quiz_id })
-    Quiz.findById({ _id: "5cbc71a4dc625c37828e3802" })
+    Quiz.findById({ _id: req.body.quiz_id })
       .then(quiz => {
         if (!quiz) {
           errors.quiz = "There is no Quiz";
           return res.status(404).json(errors);
         }
-
-        const data = {
-          answer: [{ question: 0, a: "1" }, { question: 1, a: "1" }]
-        };
-        // console.log(quiz);
-
-        const user_answer = data.answer.map(ans => ans.a);
-        // console.log(user_answer);
-        const quiz_answer = quiz.answer;
-        // console.log(quiz_answer);
-
-        let count = 0;
-        for (let i = 0; i < user_answer.length; i++) {
-          if (user_answer[i] === quiz_answer[i]) {
-            count++;
-          }
-        }
-        const right_answer = count * 2;
-        const wrong_answer = quiz_answer * -0.5;
-        const number = right_answer + wrong_answer;
-
-        const newStats = {};
-        newStats.user_id = req.user.id;
-        newStats.quiz_done = [
-          { total_question: data.question.length, right_answer: count }
-        ];
-        newStats.result = [number];
-        
-        // res.json(quiz);
         //get user from req.body.user_id
         //compare answers and store the result of the quiz and update rank
-        // User.find({ _id: req.body.user_id })
-        //   .then(user => {
+        User.find({ _id: req.body.user_id })
+          .then(user => {
+            console.log(req.body.answersArr);
+            
+            // const user_answer = data.answer.map(ans => ans.a);
+            const user_answer = req.body.answersArr.quiz.answer;
+            // console.log(user_answer);
+            const quiz_answer = quiz.answer;
+            // console.log(quiz_answer);
 
-        //   })
-        //   .catch(err => res.status(404).json({ User: "Not a User" }));
+            let count = 0;
+            for (let i = 0; i < user_answer.length; i++) {
+              if (user_answer[i] === quiz_answer[i]) {
+                count++;
+              }
+            }
+            console.log(count);
+
+            const right_answer = count * 2;
+            const wrong_answer = quiz_answer * -0.5;
+            const number = right_answer + wrong_answer;
+
+            const newStats = {};
+            newStats.stats.user_id = req.body.user_id;
+            newStats.quiz_id = req.body.quiz_id;
+            // newStats.result = [number];
+            //
+          })
+          .catch(err => res.status(404).json({ User: "Not a User" }));
       })
       .catch(err => res.status(404).json({ Quiz: "There is no Quiz" }));
   }
