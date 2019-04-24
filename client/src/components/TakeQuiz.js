@@ -69,7 +69,7 @@ export default class TakeQuiz extends Component {
     }
     console.log("answer object",answerObj);
     
-    axios.post('/api/quiz/eval',this.state)
+    axios.post('/api/quiz/eval',answerObj)
     .then(res=>console.log("submitted")
     )
   }

@@ -3,6 +3,7 @@ import "./signup.css";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { decode } from "punycode";
+// import jwt_decode from "jwt-decode";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -38,11 +39,17 @@ class Login extends Component {
       .then(response => {
         // const token = response.data["x-auth"];
         const { token } = response.data;
-        
+
         // console.log(response.data);
-        localStorage.setItem("auth-token",token);
-        this.props.history.push('/dashboard')  
-		//TODO redirect to dashboard
+        localStorage.setItem("auth-token", token);
+
+        if (jwt_decode(token).type === "organization") {
+          this.props.history.push("/CompDash");
+        } else {
+          this.props.history.push("/dashboard");
+        }
+
+        //TODO redirect to dashboard
       })
       .catch(function(response) {
         console.log(response);
