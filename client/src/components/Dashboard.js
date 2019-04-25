@@ -25,11 +25,11 @@ export default class Dashboard extends Component {
       })
     })
 
-    const { type } = jwtDecode(localStorage.getItem("auth-token"))
-    if(type==="organization"){
+    const { type } = jwtDecode(localStorage.getItem("auth-token"));
+    if (type === "organization") {
       this.props.history.push("/compdash");
-    }else{
-      this.props.history.push("/dashboard")
+    } else {
+      this.props.history.push("/dashboard");
     }
   }
 

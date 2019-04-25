@@ -17,7 +17,7 @@ export default class CreatePost extends Component {
   };
   onSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
+    // console.log(.state);
     //axios request 
     setAuthToken(localStorage.getItem('auth-token'))
   
@@ -26,6 +26,7 @@ export default class CreatePost extends Component {
     });
     this.setState({ post: " " });
   };
+  
   render() {
     return (
       <div>
