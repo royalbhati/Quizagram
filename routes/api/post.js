@@ -8,16 +8,15 @@ const Post =require('../../models/Posts')
 // @access  Private
 router.post(
   "/",
-//   passport.authenticate("jwt", { session: false }),
+  //   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    console.log("asdadSA",req.body);
+    console.log(req.body);
     
     const newPost = new Post({
+      user: req.body.user_id,
       text: req.body.post,
-      name: req.body.name,
-      user: req.body.user_id
+      name: req.body.name
     });
-
     newPost.save().then(post => res.json(post));
   }
 );
