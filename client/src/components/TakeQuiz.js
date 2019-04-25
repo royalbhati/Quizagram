@@ -57,6 +57,9 @@ export default class TakeQuiz extends Component {
         prev: prevState.current
       }));
     }
+    if(this.state.current==this.props.len){
+      event.target.hidden="true"
+    }
   };
   renderQues = i => {
     return (
@@ -66,7 +69,8 @@ export default class TakeQuiz extends Component {
         quiz={this.state.quiz.quizzes[i]}
         len={this.state.len}
         current={this.state.current}
-        // onSubmitQuiz={this.onSubmitQuiz}
+        onSubmitQuiz={this.onSubmitQuiz}
+        id={this.props.location.state.quiz._id}
       />
     );
   };
@@ -75,20 +79,20 @@ export default class TakeQuiz extends Component {
     return <SubmitPage onSubmitQuiz={this.onSubmitQuiz} />;
   };
   onSubmitQuiz = () => {
-    console.log("submit ke time", this.state);
-    const answerObj = {
-      answersArr: this.state, 
-      user_id: jwtDecode(localStorage.getItem("auth-token")).id,
-      quiz_id: this.state.quiz._id
-    };
-    // console.log(jwtDecode(getItem('auth-token'),"token");
+    // console.log("submit ke time",this.state);
+  //   const answerObj = {
+  //     answersArr: this.state,
+  //     user_id: jwtDecode(localStorage.getItem("auth-token")).id,
+  //     quiz_id: this.state.quiz._id
+  //   };
+  //   // console.log(jwtDecode(getItem('auth-token'),"token");
 
-    console.log("answer object", answerObj);
+  //   console.log("answer object", answerObj);
 
-    setAuthToken(localStorage.getItem("auth-token"));
-    axios
-      .post("/api/quiz/eval", answerObj)
-      .then(res => console.log("submitted"));
+    // setAuthToken(localStorage.getItem("auth-token"));
+    // axios
+    //   .post("/api/quiz/eval", answerObj)
+    //   .then(res => console.log("submitted"));
   };
   secondsToTime = secs => {
     let hours = Math.floor(secs / (60 * 60));

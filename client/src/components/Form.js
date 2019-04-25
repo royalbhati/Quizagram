@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 // import quiz from '../data/data.json'
+import jwtDecode from 'jwt-decode'
 export default class Form extends Component {
   state = {
     answers: [
@@ -117,13 +118,28 @@ export default class Form extends Component {
           elem.classList.add("btn-outline-info");
         }
       });
-    }
+    } 
+    
+  
   };
 
   onSubmit = event => {
     event.preventDefault();
-  };
+    const answerObj = {
+      answersArr: this.state,
+      user_id: jwtDecode(localStorage.getItem("auth-token")).id,
+      quiz_id: this.props.id
+    };
+    // console.log(jwtDecode(getItem('auth-token'),"token");
 
+    console.log("answer object", answerObj);
+
+    // setAuthToken(localStorage.getItem("auth-token"));
+    // axios
+    //   .post("/api/quiz/eval", answerObj)
+    //   .then(res => console.log("submitted"));
+    // };
+  }
   optionRender = () => {
     return this.props.quiz.options.map((elem, i) => {
       return (
@@ -158,6 +174,8 @@ export default class Form extends Component {
                 onClick={this.props.onClick}>
                 Next
               </button>
+             <input type="submit" className='btn btn-primary mt-5 btn-lg'></input>
+
             </div>
           </div>
         </form>
