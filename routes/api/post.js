@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
-const Post = require("../../models/Posts");
+const Post =require('../../models/Posts')
 // @route   POST api/post
 // @desc    Create post
 // @access  Private
@@ -11,7 +11,7 @@ router.post(
   //   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     console.log(req.body);
-
+    
     const newPost = new Post({
       user: req.body.user_id,
       text: req.body.post,

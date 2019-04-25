@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import DashNav from "./DashNav";
 import PostCard from "./PostCard";
 import LiveUpdate from "./LiveUpdates";
-import jwtDecode from "jwt-decode"
+import Axios from "axios";
+import jwtDecode from 'jwt-decode'
 export default class Dashboard extends Component {
   
   
@@ -11,6 +12,14 @@ export default class Dashboard extends Component {
     if (!localStorage.getItem("auth-token")) {
       this.props.history.push("/login");
     }
+    Axios.get('/api/post/all')
+    .then(res=>{
+      const data= res.data
+      this.setState({
+        posts:data
+      })
+    })
+
     const { type } = jwtDecode(localStorage.getItem("auth-token"))
     if(type==="organization"){
       this.props.history.push("/compdash");
@@ -19,6 +28,14 @@ export default class Dashboard extends Component {
     }
   }
 
+    
+    // renderPosts=()=>{
+    //   return this.state.posts.map((elem,i)=>{
+    //     return (
+    //       <PostCard data={elem}  className="content"></PostCard>
+    //     )
+    //   })
+    // }
 
   render() {
     return (
@@ -29,7 +46,7 @@ export default class Dashboard extends Component {
         <LiveUpdate history={this.props.history}></LiveUpdate>
         </div>
         <div className="content">
-        <PostCard  className="content"></PostCard>
+        <PostCard></PostCard>
         </div>
 
         </div>

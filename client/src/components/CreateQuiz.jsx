@@ -16,7 +16,7 @@ export default class CreateQuiz extends Component {
       ans: "",
       index: 0,
       quizName: "",
-      time: 0,
+      time: 20,
       passingCriteria: "",
       getQuiz: false
     };
@@ -99,13 +99,15 @@ export default class CreateQuiz extends Component {
     });
   };
 
+  onNext = e => {
+    
+  };
   render() {
     if (this.state.getQuiz === false) {
       return (
         <div className='container mt-3'>
-          <form onSubmit={this.onSubmit}>
+          <form>
             <div class='form-group'>
-              {" "}
               <label>Enter Quiz Name</label>
               <input
                 type='text'
@@ -116,85 +118,40 @@ export default class CreateQuiz extends Component {
                 placeholder='Quiz Name'
               />
             </div>
-
             <div class='form-group'>
-              <label>Question?</label>
-              <input
-                type='textarea'
-                class='form-control'
-                name='question'
-                value={this.state.question}
-                onChange={this.onChange}
-                placeholder='Type Question'
-              />
-            </div>
-            <div class='form-group'>
-              <div className='row'>
-                <div className='col-6'>
-                  <label for='exampleFormControlInput1'>Option 1</label>
-                  <input
-                    type='text'
-                    class='form-control'
-                    name='option1'
-                    value={this.state.option1}
-                    onChange={this.onChange}
-                    placeholder='Option 1'
-                  />
-                </div>
-                <div className='col-6'>
-                  <label for='exampleFormControlInput1'>Option 2</label>
-                  <input
-                    type='text'
-                    class='form-control'
-                    name='option2'
-                    value={this.state.option2}
-                    onChange={this.onChange}
-                    placeholder='Option 2'
-                  />
-                </div>
-              </div>
-              <div className='row mt-2'>
-                <div className='col-6'>
-                  <label for='exampleFormControlInput1'>Option 3</label>
-                  <input
-                    type='text'
-                    class='form-control'
-                    name='option3'
-                    value={this.state.option3}
-                    onChange={this.onChange}
-                    placeholder='Option 3'
-                  />
-                </div>
-              </div>
-            </div>
-            <div class='form-group'>
-              <label>Answer</label>
+              <label>Enter time in Seconds</label>
               <input
                 type='text'
                 class='form-control'
-                name='ans'
-                value={this.state.ans}
+                name='time'
                 onChange={this.onChange}
-                placeholder='Type correct option index'
+                value={this.state.time}
+                placeholder='Enter Time'
               />
             </div>
+
+            <div class='form-group'>
+              <label>Passing Criteria</label>
+              <input
+                type='text'
+                class='form-control'
+                name='passingCriteria'
+                onChange={this.onChange}
+                value={this.state.passingCriteria}
+                placeholder='Enter Passing Criteria in %'
+              />
+            </div>
+
             <div class='form-group'>
               <div>
-                <button
-                  onClick={this.newQuestion}
-                  className='btn btn-primary mr-2'>
-                  <i class='fas fa-plus' />
+                <button onClick={this.onNext} className='btn btn-primary mr-2'>
+                  next
                 </button>
-
-                <button type='submit' class='btn btn-primary'>
-                  Submit
-              </button>
               </div>
             </div>
           </form>
         </div>
       );
-
     } else {
       return (
         <div className='container mt-3'>
