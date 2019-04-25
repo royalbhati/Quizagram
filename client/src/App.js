@@ -11,6 +11,8 @@ import CreateQuiz from "./components/CreateQuiz";
 import Login from "./components/Login";
 import DashOrg from "./components/DashboardOrg";
 import PublicQuiz from "./components/PublicQuiz";
+import SubmitPage from './components/SubmitPage'
+import Result from './components/Result'
 import jwt_decode from "jwt-decode";
 
 // if(localStorage.getItem("auth-token")){
@@ -41,6 +43,9 @@ class App extends Component {
             <Route exact path='/dashboard/takeQuiz' component={TakeQuiz} />
             <Route exact path='/dashboard/createQuiz' component={CreateQuiz} />
             <Route exact path='/dashboard/public/' component={PublicQuiz} />
+            <Route exact path='/dashboard/submitted/' component={SubmitPage} />
+            <Route exact path='/result/' component={Result} />
+
           </div>
         </div>
       </Router>

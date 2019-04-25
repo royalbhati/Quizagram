@@ -12,6 +12,7 @@ export default class Cards extends Component {
             {quiz_data.map((quiz,i) => {
               return (
                 <SingleCard
+                  history={this.props.history}
                   key={i}
                   quiz_id={quiz.quiz_id}
                   quizname={quiz.quizname}

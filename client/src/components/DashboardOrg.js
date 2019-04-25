@@ -32,7 +32,7 @@ export default class DashboardOrg extends Component {
       .catch(err => console.log(err));
   }
   render() {
-    // console.log("data=", this.state.quiz_data);
+    console.log("data=", this.state.quiz_data);
 
     return (
       <div>
@@ -42,7 +42,7 @@ export default class DashboardOrg extends Component {
             {/* <button class='alert alert-dismissible alert-warning '>
               <h4 class='alert-heading compButton'>Create Quiz</h4>
             </button> */}
-            <Cards quiz_data={this.state.quiz_data} />
+            <Cards history={this.props.history} quiz_data={this.state.quiz_data} />
             {/* <Link class="btn button-style">Create Quiz</Link> */}
           </div>
         </div>

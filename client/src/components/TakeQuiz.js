@@ -72,7 +72,8 @@ export default class TakeQuiz extends Component {
         len={this.state.len}
         current={this.state.current}
         onSubmitQuiz={this.onSubmitQuiz}
-        id={this.props.location.state.quiz._id}
+        // id={this.props.location.state.quiz._id}
+        history={this.props.history}
       />
     );
   };

@@ -4,7 +4,7 @@ export default class SubmitPage extends Component {
   state = {};
 
   render() {
-    // console.log("props ka question", this.props.quiz.question);
+    console.log("props ka question", this.props.location.state);
     return (
       <div className='container mt-5'>
        <h2>Thank you for taking this test </h2>

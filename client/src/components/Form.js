@@ -139,6 +139,10 @@ export default class Form extends Component {
     //   .post("/api/quiz/eval", answerObj)
     //   .then(res => console.log("submitted"));
     // };
+    this.props.history.push({
+      pathname:"/dashboard/submitted/",
+      state:{answerObj}
+    })
   }
   optionRender = () => {
     return this.props.quiz.options.map((elem, i) => {
@@ -170,11 +174,11 @@ export default class Form extends Component {
             <div className='options'>{this.optionRender()}</div>
             <div className='next'>
               <button
+              
                 className='btn btn-primary mt-5 btn-lg'
                 onClick={this.props.onClick}>
                 Next
               </button>
-             <input type="submit" className='btn btn-primary mt-5 btn-lg'></input>
 
             </div>
           </div>
