@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 // import quiz from '../data/data.json'
-import jwtDecode from 'jwt-decode'
+import jwtDecode from "jwt-decode";
+import setAuthToken from "../utils/setAuthToken";
+import axios from "axios";
 export default class Form extends Component {
   state = {
     answers: [
@@ -98,12 +100,12 @@ export default class Form extends Component {
       console.log("result ka length", this.state.result.length + 1);
 
       if (this.state.result.length + 1 == this.props.actualAnswer.length) {
-        console.log("resulrrrrrrrrrrrrrrrrrr", this.state.result);
+        // console.log("resulrrrrrrrrrrrrrrrrrr", this.state.result);
 
         const reducer = (accumulator, currentValue) =>
           accumulator + currentValue;
         const score = this.state.result.reduce(reducer);
-        console.log("sccccccore", score);
+        // console.log("sccccccore", score);
 
         localStorage.setItem("score", score);
       }
@@ -118,9 +120,7 @@ export default class Form extends Component {
           elem.classList.add("btn-outline-info");
         }
       });
-    } 
-    
-  
+    }
   };
 
   onSubmit = event => {
@@ -133,17 +133,14 @@ export default class Form extends Component {
     // console.log(jwtDecode(getItem('auth-token'),"token");
 
     console.log("answer object", answerObj);
+    if (this.state.current == this.props.len) {
+      setAuthToken(localStorage.getItem("auth-token"));
+      axios
+        .post("/api/quiz/eval", answerObj)
+        .then(res => console.log(res.data));
+    }
+  };
 
-    // setAuthToken(localStorage.getItem("auth-token"));
-    // axios
-    //   .post("/api/quiz/eval", answerObj)
-    //   .then(res => console.log("submitted"));
-    // };
-    this.props.history.push({
-      pathname:"/dashboard/submitted/",
-      state:{answerObj}
-    })
-  }
   optionRender = () => {
     return this.props.quiz.options.map((elem, i) => {
       return (
@@ -179,7 +176,7 @@ export default class Form extends Component {
                 onClick={this.props.onClick}>
                 Next
               </button>
-
+              <input type='submit' className='btn btn-primary mt-5 btn-lg' />
             </div>
           </div>
         </form>

@@ -30,6 +30,8 @@ router.post(
     newQuiz.quizzes = req.body.quizzes;
     newQuiz.answer = req.body.answer;
     newQuiz.quizname = req.body.quizName;
+    newQuiz.time = Number(req.body.time);
+    newQuiz.passsingcriteria = Number(req.body.passingCriteria);
     console.log(newQuiz);
 
     new Quiz(newQuiz)
@@ -74,8 +76,8 @@ router.get(
           errors.quiz = "There is no Quiz";
           return res.status(404).json(errors);
         }
-        console.log("sadsad",quiz);
-        
+        // console.log("sadsad", quiz);
+
         res.json(quiz);
       })
       .catch(err => res.status(404).json({ Quiz: "There is no Quiz" }));
@@ -91,6 +93,8 @@ router.post(
   (req, res) => {
     // Get user detail from token and get quiz data using id
     errors = {};
+    // console.log("test", req.body.answersArr.answers);
+
     // console.log(req.params.id);
     // Quiz.findById({ _id: req.body.quiz_id })
     Quiz.findById({ _id: req.body.quiz_id })
@@ -99,15 +103,21 @@ router.post(
           errors.quiz = "There is no Quiz";
           return res.status(404).json(errors);
         }
-        //get user from req.body.user_id
-        //compare answers and store the result of the quiz and update rank
-        User.find({ _id: req.body.user_id })
-          .then(user => {
-            console.log(req.body.answersArr);
+        // console.log("quiz",quiz);
+        const criteria = quiz.passsingcriteria;
+        // console.log(criteria);
 
-            // const user_answer = data.answer.map(ans => ans.a);
-            const user_answer = req.body.answersArr.quiz.answer;
-            // console.log(user_answer);
+        //get user from req.body.user_id
+        //compare answers and storenswer);nswer); the result of the quiz and update rank
+        User.find({ _id: req.body.user_id })
+          .then( async user => {
+            // console.log(req.body.answersArr);
+            const user_answer = [];
+            await req.body.answersArr.answers.map(elem => {
+              user_answer.push(elem.a);
+            });
+            // const user_answer = req.body.answer;
+             await console.log("arra", user_answer);
             const quiz_answer = quiz.answer;
             // console.log(quiz_answer);
 
@@ -117,17 +127,22 @@ router.post(
                 count++;
               }
             }
-            console.log(count);
 
             const right_answer = count * 2;
-            const wrong_answer = quiz_answer * -0.5;
+            const wrong_answer = (quiz_answer.length - count) * -0.5;
             const number = right_answer + wrong_answer;
 
+            const percentage = (number * 100) / (user_answer.length * 2);
+            // console.log(percentage);
+
             const newStats = {};
-            newStats.stats.user_id = req.body.user_id;
-            newStats.quiz_id = req.body.quiz_id;
-            // newStats.result = [number];
-            //
+            newStats.user = req.body.user_id;
+            newStats.quiz = req.body.quiz_id;
+            newStats.result = criteria < percentage ? "pass" : "fail";
+            new Stats(newStats)
+              .save()
+              .then(stats => res.json(stats))
+              .catch(err => console.log(err));
           })
           .catch(err => res.status(404).json({ User: "Not a User" }));
       })
@@ -152,7 +167,7 @@ router.get(
         }
         // console.log("dgdfgd", user[0]._id);
 
-        Quiz.find({ user: user[0]._id })
+        Quiz.findOneAndUpdate({ user: user[0]._id })
           .then(quiz => {
             if (!quiz) {
               errors.Quiz = "There is no Quiz";
@@ -170,5 +185,27 @@ router.get(
       .catch(err => res.status(404).json({ User: "There is no User" }));
   }
 );
+
+// @route   GET api/quiz/result/:id
+// @desc    Return quiz result
+// @access  Public
+router.get(
+  "/result/:id",
+  // passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    errors = {};
+    Stats.find({ quiz: req.params.id })
+      .then(quiz => {
+        if (!quiz) {
+          errors.quiz = "There is no Quiz";
+          return res.status(404).json(errors);
+        }
+        // console.log("sadsad", quiz);
+        res.json(quiz);
+      })
+      .catch(err => res.status(404).json({ Quiz: "There is no Quiz" }));
+  }
+);
+
 
 module.exports = router;

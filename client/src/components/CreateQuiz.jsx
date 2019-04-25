@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
+import { log } from "util";
 export default class CreateQuiz extends Component {
   constructor(props) {
     super(props);
@@ -53,11 +54,14 @@ export default class CreateQuiz extends Component {
     }));
     //send quiz to backend and redirect page to dashboard
     const quizzes = {};
+    quizzes.time = this.state.time;
+    quizzes.passingCriteria = this.state.passingCriteria;
     quizzes.answer = this.state.answer;
     quizzes.quizzes = this.state.quizzes;
     quizzes.quizName = this.state.quizName;
     const token = localStorage.getItem("auth-token");
     setAuthToken(token);
+    // console.log(quizzes);
 
     await axios
       .post("/api/quiz/create-quiz", quizzes)
@@ -65,7 +69,6 @@ export default class CreateQuiz extends Component {
       .catch(function(response) {
         console.log(response);
       });
-    //TODO redirect to dashboard
     this.props.history.push("/compdash");
   }
 
@@ -87,8 +90,8 @@ export default class CreateQuiz extends Component {
       quizzes: [...previous.quizzes, quiz],
       answer: [...previous.answer, previous.ans]
     }));
-    console.log(this.state.quizzes);
-    console.log(this.state.answer);
+    // console.log(this.state.quizzes);
+    // console.log(this.state.answer);
     await this.setState({
       question: "",
       option1: "",
@@ -100,7 +103,8 @@ export default class CreateQuiz extends Component {
   };
 
   onNext = e => {
-    
+    e.preventDefault();
+    this.setState({ getQuiz: true });
   };
   render() {
     if (this.state.getQuiz === false) {
@@ -156,19 +160,6 @@ export default class CreateQuiz extends Component {
       return (
         <div className='container mt-3'>
           <form onSubmit={this.onSubmit}>
-            <div class='form-group'>
-              {" "}
-              <label>Enter Quiz Name</label>
-              <input
-                type='text'
-                class='form-control'
-                name='quizName'
-                onChange={this.onChange}
-                value={this.state.quizName}
-                placeholder='Quiz Name'
-              />
-            </div>
-
             <div class='form-group'>
               <label>Question?</label>
               <input
