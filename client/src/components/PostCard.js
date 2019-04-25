@@ -15,10 +15,10 @@ export default class PostCard extends Component {
 
   render() {
     const { loading } = this.state;
+    console.log("props", this.props);
 
     return (
       <div className='mt-5 feed'>
-        <CreatePost />
         <div className='feedPost'>
           <Card
             className='m-auto post'
@@ -33,13 +33,12 @@ export default class PostCard extends Component {
                 avatar={
                   <Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
                 }
-                title='Akash'
-                description="Now let's use some more properties. Consider a list of 6 items, all with a fixed dimensions in a matter of aesthetics but they could be auto-sized. We want them to be evenly and nicely distributed on the horizontal axis so that when we resize the browser, everything is fine (without media queries!)."
+                title={this.props.data.name}
+                description={this.props.data.text}
               />
             </Skeleton>
           </Card>
         </div>
-       
       </div>
     );
   }

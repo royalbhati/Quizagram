@@ -8,112 +8,105 @@ export default class Form extends Component {
         a: ""
       }
     ],
-    result:[],
+    result: [],
     current: 0,
-    correct:" "
- 
+    correct: " "
   };
   onClick = event => {
     const options = Array.from(document.getElementsByClassName("opts"));
     console.log("options", event.target.id);
 
-    
-
     const answer = {
       question: this.props.quiz.index,
-      a:  event.target.id
+      a: event.target.id
     };
-    
+
     this.setState(prevState => {
       const prevOpt = prevState.answers[prevState.answers.length - 1].question;
       if (
         prevState.answers[prevState.answers.length - 1].question ===
         answer.question
       ) {
-        return { answers: [{ question: prevOpt, a: answer.a }],current:prevState.current+1 };
+        return {
+          answers: [{ question: prevOpt, a: answer.a }],
+          current: prevState.current + 1
+        };
       } else {
-        return { answers: [...prevState.answers, answer],current:prevState.current+1};
+        return {
+          answers: [...prevState.answers, answer],
+          current: prevState.current + 1
+        };
       }
     });
 
- 
+    // For public quiz
+    if (this.props.actualAnswer) {
+      // console.log("chl gye re baba");
 
+      if (event.target.id == this.props.actualAnswer[this.state.current]) {
+        // this.setState(prevState=>{
+        //   return {result:prevState.result.concat(1)}
+        // })
 
-  // For public quiz
-  if(this.props.actualAnswer){
-    // console.log("chl gye re baba");
-    
-    if(event.target.id==this.props.actualAnswer[this.state.current]){
-      // this.setState(prevState=>{
-      //   return {result:prevState.result.concat(1)}
-      // })
-
-       this.setState(prevState=>{
-        return {correct:true}
-      })
+        this.setState(prevState => {
+          return { correct: true };
+        });
         // if(event.target.classList.contains("btn-info")|| event.target.classList.contains("btn-outline-info")){
-          event.target.classList.remove("btn-outline-info");
-          // event.target.classList.remove("btn-info");
-        event.target.classList.add("btn-success")
+        event.target.classList.remove("btn-outline-info");
+        // event.target.classList.remove("btn-info");
+        event.target.classList.add("btn-success");
         options.forEach(elem => {
           if (elem !== event.target) {
-           elem.disabled=true;
+            elem.disabled = true;
           }
         });
-      }
-     
-    else if(event.target.id!==this.props.actualAnswer[this.state.current]){
-      
-      // this.setState(prevState=>{
-      //   return {result:prevState.result.concat(-1)}
-      // })
+      } else if (
+        event.target.id !== this.props.actualAnswer[this.state.current]
+      ) {
+        // this.setState(prevState=>{
+        //   return {result:prevState.result.concat(-1)}
+        // })
 
-      this.setState(prevState=>{
-        return {correct:false}
-      })
+        this.setState(prevState => {
+          return { correct: false };
+        });
 
-      // event.target.classList.remove("btn-outline-info");
+        // event.target.classList.remove("btn-outline-info");
         event.target.classList.remove("btn-info");
 
-        event.target.classList.add("btn-danger")
+        event.target.classList.add("btn-danger");
         options.forEach(elem => {
           if (elem !== event.target) {
-            elem.classList.remove("btn-success")
-           elem.classList.add("btn-outline-info");
+            elem.classList.remove("btn-success");
+            elem.classList.add("btn-outline-info");
 
-           elem.disabled=true;
+            elem.disabled = true;
           }
-          if(elem.id==this.props.actualAnswer[this.state.current]){
-            elem.disabled=false;
-            elem.classList.remove("btn-outline-info")
-            elem.classList.add("btn-success")
-
-
-
+          if (elem.id == this.props.actualAnswer[this.state.current]) {
+            elem.disabled = false;
+            elem.classList.remove("btn-outline-info");
+            elem.classList.add("btn-success");
           }
         });
-        
-    }
-    else{
-      this.setState(prevState=>{
-        return {result:[...prevState.result,0]}
-      })
-    }
-    console.log("props ka length",this.props.actualAnswer.length)
-    console.log("result ka length",this.state.result.length+1)
+      } else {
+        this.setState(prevState => {
+          return { result: [...prevState.result, 0] };
+        });
+      }
+      console.log("props ka length", this.props.actualAnswer.length);
+      console.log("result ka length", this.state.result.length + 1);
 
-    if((this.state.result.length+1)==this.props.actualAnswer.length){
-      console.log("resulrrrrrrrrrrrrrrrrrr",this.state.result);
-      
-      const reducer = (accumulator, currentValue) => accumulator + currentValue;
-      const score=this.state.result.reduce(reducer)
-      console.log("sccccccore",score);
-      
-      localStorage.setItem("score",score)
-    }
- 
+      if (this.state.result.length + 1 == this.props.actualAnswer.length) {
+        console.log("resulrrrrrrrrrrrrrrrrrr", this.state.result);
 
-  }
+        const reducer = (accumulator, currentValue) =>
+          accumulator + currentValue;
+        const score = this.state.result.reduce(reducer);
+        console.log("sccccccore", score);
+
+        localStorage.setItem("score", score);
+      }
+    }
     if (event.target.classList.contains("btn-outline-info")) {
       event.target.classList.remove("btn-outline-info");
 
@@ -124,15 +117,12 @@ export default class Form extends Component {
           elem.classList.add("btn-outline-info");
         }
       });
-    } 
-  
-  
+    }
   };
 
   onSubmit = event => {
     event.preventDefault();
-
-    };
+  };
 
   optionRender = () => {
     return this.props.quiz.options.map((elem, i) => {
@@ -140,7 +130,7 @@ export default class Form extends Component {
         <button
           onClick={this.onClick}
           value={elem}
-          id={i+1}
+          id={i + 1}
           class=' opts btn btn-outline-info'
           style={{ cursor: "pointer" }}>
           {elem}
@@ -155,7 +145,9 @@ export default class Form extends Component {
       <div className='container mt-5'>
         <form onSubmit={this.onSubmit}>
           <div class='form-group'>
-            <label className='ques'>Question {this.props.current+1} out of {this.props.len}</label>
+            <label className='ques'>
+              Question {this.props.current + 1} out of {this.props.len}
+            </label>
             <h5 class='label' for='exampleInputEmail1'>
               {this.props.quiz.question}
             </h5>
@@ -167,7 +159,6 @@ export default class Form extends Component {
                 Next
               </button>
             </div>
-            <h1>{!this.state.correct ? <div>{this.props.actualAnswer[this.state.current]}</div>: null}</h1>
           </div>
         </form>
       </div>

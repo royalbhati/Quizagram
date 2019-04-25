@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Card, Icon, Avatar } from "antd";
-import jwt_decode from "jwt-decode";
-import axios from "axios";
-import setAuthToken from "../utils/setAuthToken"
+import React, { Component } from 'react'
+import { Card, Icon, Avatar, } from 'antd';
+import jwt_decode from 'jwt-decode'
+import axios from 'axios'
+import setAuthToken from '../utils/setAuthToken';
 export default class CreatePost extends Component {
   state = {
     post: "",
@@ -17,14 +17,16 @@ export default class CreatePost extends Component {
   };
   onSubmit = event => {
     event.preventDefault();
-    // console.log(this.state);
-    //axios request
-    setAuthToken(localStorage.getItem("auth-token"))
+    // console.log(.state);
+    //axios request 
+    setAuthToken(localStorage.getItem('auth-token'))
+  
     axios.post("/api/post", this.state).then(() => {
       console.log("post submitted");
     });
     this.setState({ post: " " });
   };
+  
   render() {
     return (
       <div>
