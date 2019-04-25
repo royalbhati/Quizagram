@@ -76,7 +76,7 @@ router.get(
           errors.quiz = "There is no Quiz";
           return res.status(404).json(errors);
         }
-        console.log("sadsad", quiz);
+        // console.log("sadsad", quiz);
 
         res.json(quiz);
       })
@@ -93,7 +93,7 @@ router.post(
   (req, res) => {
     // Get user detail from token and get quiz data using id
     errors = {};
-    // console.log("test",req.body);
+    // console.log("test", req.body.answersArr.answers);
 
     // console.log(req.params.id);
     // Quiz.findById({ _id: req.body.quiz_id })
@@ -110,12 +110,14 @@ router.post(
         //get user from req.body.user_id
         //compare answers and storenswer);nswer); the result of the quiz and update rank
         User.find({ _id: req.body.user_id })
-          .then(user => {
+          .then( async user => {
             // console.log(req.body.answersArr);
-
-            // const user_answer = data.answer.map(ans => ans.a);
-            const user_answer = req.body.answer;
-            //             console.log(user_answer);
+            const user_answer = [];
+            await req.body.answersArr.answers.map(elem => {
+              user_answer.push(elem.a);
+            });
+            // const user_answer = req.body.answer;
+             await console.log("arra", user_answer);
             const quiz_answer = quiz.answer;
             // console.log(quiz_answer);
 
@@ -165,7 +167,7 @@ router.get(
         }
         // console.log("dgdfgd", user[0]._id);
 
-        Quiz.find({ user: user[0]._id })
+        Quiz.findOneAndUpdate({ user: user[0]._id })
           .then(quiz => {
             if (!quiz) {
               errors.Quiz = "There is no Quiz";
@@ -183,5 +185,27 @@ router.get(
       .catch(err => res.status(404).json({ User: "There is no User" }));
   }
 );
+
+// @route   GET api/quiz/result/:id
+// @desc    Return quiz result
+// @access  Public
+router.get(
+  "/result/:id",
+  // passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    errors = {};
+    Stats.find({ quiz: req.params.id })
+      .then(quiz => {
+        if (!quiz) {
+          errors.quiz = "There is no Quiz";
+          return res.status(404).json(errors);
+        }
+        // console.log("sadsad", quiz);
+        res.json(quiz);
+      })
+      .catch(err => res.status(404).json({ Quiz: "There is no Quiz" }));
+  }
+);
+
 
 module.exports = router;

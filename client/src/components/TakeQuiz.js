@@ -57,9 +57,6 @@ export default class TakeQuiz extends Component {
         prev: prevState.current
       }));
     }
-    if(this.state.current==this.props.len){
-      event.target.hidden="true"
-    }
   };
   renderQues = i => {
     return (
@@ -76,19 +73,17 @@ export default class TakeQuiz extends Component {
   };
 
   submitQuiz = () => {
-    return <SubmitPage onSubmitQuiz={this.onSubmitQuiz} />;
+    return <SubmitPage />;
   };
   onSubmitQuiz = () => {
     // console.log("submit ke time",this.state);
-  //   const answerObj = {
-  //     answersArr: this.state,
-  //     user_id: jwtDecode(localStorage.getItem("auth-token")).id,
-  //     quiz_id: this.state.quiz._id
-  //   };
-  //   // console.log(jwtDecode(getItem('auth-token'),"token");
-
-  //   console.log("answer object", answerObj);
-
+    //   const answerObj = {
+    //     answersArr: this.state,
+    //     user_id: jwtDecode(localStorage.getItem("auth-token")).id,
+    //     quiz_id: this.state.quiz._id
+    //   };
+    //   // console.log(jwtDecode(getItem('auth-token'),"token");
+    //   console.log("answer object", answerObj);
     // setAuthToken(localStorage.getItem("auth-token"));
     // axios
     //   .post("/api/quiz/eval", answerObj)
