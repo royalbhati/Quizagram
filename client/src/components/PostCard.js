@@ -15,7 +15,8 @@ export default class PostCard extends Component {
 
   render() {
     const { loading } = this.state;
-
+    console.log("props",this.props);
+    
     return (
       <div className='mt-5 feed'>
         <CreatePost />

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Card, Icon, Avatar, } from 'antd';
 import jwt_decode from 'jwt-decode'
 import axios from 'axios'
+import setAuthToken from '../utils/setAuthToken';
 export default class CreatePost extends Component {
 
   state={
@@ -19,6 +20,7 @@ this.setState({
     event.preventDefault();
     console.log(this.state);
     //axios request 
+    setAuthToken(localStorage.getItem('auth-token'))
     axios.post('/api/post',this.state)
     .then(()=>{console.log("post submitted")    
     })
@@ -33,7 +35,7 @@ this.setState({
         <div className="AddPost">
         <img className="PostBoxpic" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
          <input onChange={this.onChange} value={this.state.post} className="PostBoxInput" type="textarea" placeholder="Create a Post"></input>
-        <input type="submit"></input>
+        <input type="submit" className="submitButton" onClick={this.onSubmit}></input>
          </div>
          </form>
         </Card>
