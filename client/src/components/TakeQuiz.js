@@ -12,17 +12,17 @@ export default class TakeQuiz extends Component {
     current: 0,
     prev: -1,
     len: this.props.location.state.quiz.answer.length,
-    time:{},
-    seconds:30,
-    timer:0,
-    timeLeft:true
+    time: {},
+    seconds: 30,
+    timer: 0,
+    timeLeft: true
   };
   // componentDidMount() {
   // set toekn and fetch quizzes
   // const token = localStorage.getItem("auth-token");
   // setAuthToken(token);
   // }
-  
+
   componentDidMount() {
     //todo check localstorage if token is not available than redirect to login page
     if (!localStorage.getItem("auth-token")) {
@@ -33,9 +33,9 @@ export default class TakeQuiz extends Component {
     console.log("data aa gaya", this.props.location.state.quiz._id);
     if (this.state.timer == 0 && this.state.seconds > 0) {
       this.setState({
-        timer : setInterval(this.countDown, 1000)
-      })
-  }
+        timer: setInterval(this.countDown, 1000)
+      });
+    }
   }
 
   onClick = event => {
@@ -44,10 +44,8 @@ export default class TakeQuiz extends Component {
     options.forEach(elem => {
       elem.classList.remove("btn-info");
       elem.classList.add("btn-outline-info");
-      
-
     });
-   
+
     if (this.state.current === 1) {
       this.setState(prevState => ({
         current: prevState.current,
@@ -68,18 +66,18 @@ export default class TakeQuiz extends Component {
         quiz={this.state.quiz.quizzes[i]}
         len={this.state.len}
         current={this.state.current}
-        onSubmitQuiz={this.onSubmitQuiz}
+        // onSubmitQuiz={this.onSubmitQuiz}
       />
     );
   };
-  
+
   submitQuiz = () => {
     return <SubmitPage onSubmitQuiz={this.onSubmitQuiz} />;
   };
   onSubmitQuiz = () => {
-    // console.log("submit ke time",this.state);
+    console.log("submit ke time", this.state);
     const answerObj = {
-      answersArr: this.state,
+      answersArr: this.state, 
       user_id: jwtDecode(localStorage.getItem("auth-token")).id,
       quiz_id: this.state.quiz._id
     };
@@ -92,7 +90,7 @@ export default class TakeQuiz extends Component {
       .post("/api/quiz/eval", answerObj)
       .then(res => console.log("submitted"));
   };
-  secondsToTime=(secs)=>{
+  secondsToTime = secs => {
     let hours = Math.floor(secs / (60 * 60));
 
     let divisor_for_minutes = secs % (60 * 60);
@@ -102,32 +100,30 @@ export default class TakeQuiz extends Component {
     let seconds = Math.ceil(divisor_for_seconds);
 
     let obj = {
-      "h": hours,
-      "m": minutes,
-      "s": seconds
+      h: hours,
+      m: minutes,
+      s: seconds
     };
     return obj;
-  }
-  startTimer=()=> {
-    }
-  countDown=()=> {
+  };
+  startTimer = () => {};
+  countDown = () => {
     // Remove one second, set state so a re-render happens.
     let seconds = this.state.seconds - 1;
     this.setState({
       time: this.secondsToTime(seconds),
-      seconds: seconds,
+      seconds: seconds
     });
-    
+
     // Check if we're at zero.
-    if (seconds == 0) { 
+    if (seconds == 0) {
       clearInterval(this.state.timer);
       this.setState({
-        timeLeft:false
-      })
+        timeLeft: false
+      });
     }
-  }
+  };
   render() {
-
     return (
       <div>
         <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
@@ -144,13 +140,15 @@ export default class TakeQuiz extends Component {
             aria-label='Toggle navigation'>
             <span class='navbar-toggler-icon' />
           </button>
-
         </nav>
-        
-        <h4 style={{"background":"#FF9800","color":"white"}}>Time left :  &nbsp;&nbsp;  m: {this.state.time.m} s: {this.state.time.s}</h4>
-       
-        {(this.state.current > this.state.prev &&
-        this.state.len > this.state.current) && this.state.timeLeft
+
+        <h4 style={{ background: "#FF9800", color: "white" }}>
+          Time left : &nbsp;&nbsp; m: {this.state.time.m} s: {this.state.time.s}
+        </h4>
+
+        {this.state.current > this.state.prev &&
+        this.state.len > this.state.current &&
+        this.state.timeLeft
           ? this.renderQues(this.state.current)
           : this.submitQuiz()}
       </div>

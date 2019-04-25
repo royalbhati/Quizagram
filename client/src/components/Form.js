@@ -97,12 +97,12 @@ export default class Form extends Component {
       console.log("result ka length", this.state.result.length + 1);
 
       if (this.state.result.length + 1 == this.props.actualAnswer.length) {
-        console.log("resulrrrrrrrrrrrrrrrrrr", this.state.result);
+        // console.log("resulrrrrrrrrrrrrrrrrrr", this.state.result);
 
         const reducer = (accumulator, currentValue) =>
           accumulator + currentValue;
         const score = this.state.result.reduce(reducer);
-        console.log("sccccccore", score);
+        // console.log("sccccccore", score);
 
         localStorage.setItem("score", score);
       }

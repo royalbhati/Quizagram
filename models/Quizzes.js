@@ -32,6 +32,12 @@ const quizSchema = new Schema({
     type: [String],
     required: true
   },
+  time: {
+    type: Number
+  },
+  passsingcriteria: {
+    type: Number
+  },
   date: {
     type: Date,
     default: Date.now
